@@ -34,10 +34,15 @@ namespace Tracage.DAL
             return items;
         }
 
-        public async Task<T> GetItemAsync(string identifier)
+        public Task<T> GetItemAsync(string identifier)
         {
-            //TODO COMPLETER!!!
-            throw new NotImplementedException();
+            var uri = new Uri(string.Format(restUrl + resource, id));
+
+            var response = await client.GetItemByIdAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                Debug.WriteLine(@"item successfully deleted.");
+            }
         }
 
         public async Task SaveItemAsync(T item)

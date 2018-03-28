@@ -25,10 +25,10 @@ namespace TracageAlimentaireXamarin.ViewModels
             FindProduct();
         }
 
-        public async void FindProduct()
+        public void FindProduct()
         {
             RestClient<Produit> client = new RestClient<Produit>("/Produits");
-            var result = await client.GetItemAsync(qrCode);
+            var result = client.GetItemAsync(qrCode);
             Product = (Produit) result;
         }
     }
