@@ -1,23 +1,54 @@
-﻿using App2.DAL;
-using App2.Models;
+﻿using Tracage.DAL;
+using Tracage.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.ComponentModel;
 
-namespace App2.ViewModels
+namespace Tracage.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
+
+        private bool isLoading;
+
+        public Command ScanCommand { get; set; }
+
         public INavigation Navigation { get; set; }
 
-        public async void Jefedechos()
+        public bool IsLoading
         {
-            RestClient<Utilisateur> client = new RestClient<Utilisateur>("/utilisateurs");
-            Utilisateur bob =  new Utilisateur();
-           await client.SaveItemAsync(bob);
+            get { return isLoading; }
+
+            private set
+            {
+                if (isLoading != value)
+                {
+                    isLoading = value;
+                    PropertyChanged(this, new PropertyChangedEventArgs("IsLoading"));
+                }
+            }
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        public MainViewModel()
+        {
+            ScanCommand = new Command(ScanAsync);
+        }
+
+        
+        private async void ScanAsync()
+        {
+            IsLoading = true;
+            SharedScanner scanner = new SharedScanner();
+            await scanner.ScanCodeAsync();
+            IsLoading = false;
+            Navigation.PushModalAsync( new ProductDetail(new ProductDetailViewModel()) );
+        }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace App2.Models
+namespace Tracage.Models
 {
     public class Organisation
     {

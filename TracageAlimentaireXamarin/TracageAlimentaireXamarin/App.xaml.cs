@@ -1,9 +1,5 @@
-﻿using App2.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using App2.ViewModels;
+﻿using Tracage.Views;
+using Tracage.ViewModels;
 
 using Xamarin.Forms;
 
@@ -14,10 +10,10 @@ namespace TracageAlimentaireXamarin
 		public App ()
 		{
             InitializeComponent();
-			MainPage = new MainPage(new MainViewModel());
-		}
+            MainPage = new MainPage(new MainViewModel());
+        }
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

@@ -1,8 +1,8 @@
-﻿using App2.ViewModels;
+﻿using Tracage.ViewModels;
 using System;
 using Xamarin.Forms;
 
-namespace App2.Views
+namespace Tracage.Views
 {
     public partial class MainPage : ContentPage
     {

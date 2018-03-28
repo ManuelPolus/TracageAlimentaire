@@ -1,23 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:App2.Views"
-             x:Class="App2.Views.MainPage"
+             xmlns:local="clr-namespace:Tracage.Views"
+             x:Class="Tracage.Views.MainPage"
              >
     <RelativeLayout>
-        <Image Source="../Resources/Images/Paprika.jpeg"
-               Aspect="AspectFill"
-               Opacity="0.2"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
-        
         <Grid 
             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
             
             <StackLayout>
                 <Label
-                   Text="{Binding Path=GreetingsName}" 
+                   Text="Bienvenue ! appuyez sur le bouton de scan pour commencer..." 
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
                    Margin="10,0"
