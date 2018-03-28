@@ -34,6 +34,12 @@ namespace Tracage.DAL
             return items;
         }
 
+        public async Task<T> GetItemAsync(string identifier)
+        {
+            //TODO COMPLETER!!!
+            throw new NotImplementedException();
+        }
+
         public async Task SaveItemAsync(T item)
         {
 
@@ -64,6 +70,8 @@ namespace Tracage.DAL
                 Debug.WriteLine(@"item successfully deleted.");
             }
         }
+
+
     }
 
 }

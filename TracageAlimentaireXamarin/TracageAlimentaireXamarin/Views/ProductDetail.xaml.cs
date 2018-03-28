@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TracageAlimentaireXamarin.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +14,7 @@ namespace TracageAlimentaireXamarin.Views
 	{
 		public ProductDetail (ProductDetailViewModel vm)
 		{
-            BindingCOntext = vm;
+            BindingContext = vm;
             vm.Navigation = Navigation;
 			InitializeComponent ();
 		}

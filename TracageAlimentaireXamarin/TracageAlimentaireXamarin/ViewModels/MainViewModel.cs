@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.ComponentModel;
+using TracageAlimentaireXamarin.ViewModels;
+using TracageAlimentaireXamarin.Views;
 
 namespace Tracage.ViewModels
 {
@@ -41,14 +43,15 @@ namespace Tracage.ViewModels
             ScanCommand = new Command(ScanAsync);
         }
 
-        
+
         private async void ScanAsync()
         {
             IsLoading = true;
             SharedScanner scanner = new SharedScanner();
-            await scanner.ScanCodeAsync();
+            var resultScan = await scanner.ScanCodeAsync();
             IsLoading = false;
-            Navigation.PushModalAsync( new ProductDetail(new ProductDetailViewModel()) );
+            if (resultScan != null)
+                Navigation.PushModalAsync(new ProductDetail(new ProductDetailViewModel(resultScan)));
         }
     }
 }
