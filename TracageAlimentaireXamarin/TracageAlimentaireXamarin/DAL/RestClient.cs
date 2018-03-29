@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace Tracage.DAL
 {
-    class RestClient<T>
+    public class RestClient<T>
     {
-        private HttpClient client;
-        private const string restUrl = "http://04335c06.ngrok.io/api/"; //TODO replace with real 
-        private string resource;
+        private readonly HttpClient _client;
+        private const string Resturl = "http://04335c06.ngrok.io/api/"; //TODO replace with real 
+        private readonly string _resource;
 
         public RestClient(string resource)
         {
-            client = new HttpClient();
-            this.resource = resource;
-            client.MaxResponseContentBufferSize = 256000;
+            _client = new HttpClient();
+            this._resource = resource;
+            _client.MaxResponseContentBufferSize = 256000;
         }
 
-        public async Task<List<T>> RefreshDataAsync()
+        public async Task<IEnumerable<T>> GetDataAsync()
         {
             List<T> items = new List<T>();
-            var uri = new Uri(string.Format(restUrl + resource, string.Empty));
-            var response = await client.GetAsync(uri);
+            var uri = new Uri(string.Format(Resturl + _resource, string.Empty));
+            var response = await _client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -34,48 +34,84 @@ namespace Tracage.DAL
             return items;
         }
 
-        public Task<T> GetItemAsync(string identifier)
+        public async Task<T> GetItemAsync(object identifier)
         {
-            var uri = new Uri(string.Format(restUrl + resource, id));
-
-            var response = await client.GetItemByIdAsync(uri);
-            if (response.IsSuccessStatusCode)
+            var uri = new Uri(string.Format(Resturl + _resource, identifier));
+            try
             {
-                Debug.WriteLine(@"item successfully deleted.");
+                //TODO check if this works out with a real REST service in the back
+                var response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var content = await response.Content.ReadAsStringAsync();
+                    T item = JsonConvert.DeserializeObject<T>(content);
+                    return item;
+                }
             }
-        }
-
-        public async Task SaveItemAsync(T item)
-        {
-
-            var uri = new Uri(string.Format(restUrl + resource, string.Empty));
-
-            var json = JsonConvert.SerializeObject(item);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = null;
-
-            response = await client.PostAsync(uri, content);
-
-            if (response.IsSuccessStatusCode)
+            catch (Exception e)
             {
-                Debug.WriteLine(@"item successfully saved.");
+                Console.WriteLine("requets failed");
+                Console.WriteLine(e.StackTrace);
 
             }
 
+            throw new Exception("kys");
+
         }
 
-        public async Task DeleteItemAsync(string id, string resource)
+        public async Task<bool> SaveItemAsync(T item)
         {
-            var uri = new Uri(string.Format(restUrl + resource, id));
-
-            var response = await client.DeleteAsync(uri);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                Debug.WriteLine(@"item successfully deleted.");
+                var uri = new Uri(string.Format(Resturl + _resource, string.Empty));
+
+                var json = JsonConvert.SerializeObject(item);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+
+                response = await _client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"item successfully saved.");
+                    return true;
+                }
+
+                return false;
             }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return false;
+            }
+
+
         }
 
+        public async Task<bool> DeleteItemAsync(T id)
+        {
+            try
+            {
+                var uri = new Uri(string.Format(Resturl + _resource, id));
+
+                var response = await _client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"item successfully deleted.");
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+
+        }
+        
 
     }
 

@@ -1,11 +1,9 @@
-﻿using Tracage.DAL;
-using Tracage.Models;
-using System;
+﻿using Tracage.Models;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.ComponentModel;
+using System.Linq;
+using TracageAlimentaireXamarin.BL.Components;
 using TracageAlimentaireXamarin.ViewModels;
 using TracageAlimentaireXamarin.Views;
 
@@ -51,7 +49,23 @@ namespace Tracage.ViewModels
             var resultScan = await scanner.ScanCodeAsync();
             IsLoading = false;
             if (resultScan != null)
-                Navigation.PushModalAsync(new ProductDetail(new ProductDetailViewModel(resultScan)));
+            {
+
+                var pdt =FindProduct(resultScan);
+                await Navigation.PushModalAsync(new ProductDetail(new ProductDetailViewModel(pdt)));
+            }
+                
+        }
+
+        public Produit FindProduct(string qrCode)
+        {
+            var restAccessor = new RestAccessor(typeof(Produit));
+            var result = restAccessor.GetByIdentifier(qrCode);
+            restAccessor.DefineType(typeof(Utilisateur));
+            List<Utilisateur> users = new List<Utilisateur>();
+            users = restAccessor.GetAsList<Utilisateur>().ToList();
+            
+            return (Produit)result;
         }
     }
 }

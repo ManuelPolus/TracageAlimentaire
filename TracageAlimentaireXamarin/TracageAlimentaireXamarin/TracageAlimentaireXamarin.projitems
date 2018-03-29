@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Adresse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Etape.cs" />
@@ -58,5 +60,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)BL\Entities\" />
   </ItemGroup>
 </Project>

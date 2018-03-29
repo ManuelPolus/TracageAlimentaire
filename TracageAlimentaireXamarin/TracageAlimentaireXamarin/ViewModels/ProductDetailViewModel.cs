@@ -11,7 +11,6 @@ namespace TracageAlimentaireXamarin.ViewModels
 {
     public class ProductDetailViewModel : INotifyPropertyChanged
     {
-        private string qrCode;
 
         public INavigation Navigation { get; set; }
 
@@ -19,17 +18,11 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public Produit Product { get; set; }
 
-        public ProductDetailViewModel(string qrCode)
+        public ProductDetailViewModel(Produit p)
         {
-            this.qrCode = qrCode;
-            FindProduct();
+            this.Product = p;
         }
 
-        public void FindProduct()
-        {
-            RestClient<Produit> client = new RestClient<Produit>("/Produits");
-            var result = client.GetItemAsync(qrCode);
-            Product = (Produit) result;
-        }
+        
     }
 }
