@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\ProductChecker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Adresse.cs" />
