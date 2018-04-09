@@ -16,9 +16,9 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Produit Product { get; set; }
+        public Product Product { get; set; }
 
-        public ProductDetailViewModel(Produit p)
+        public ProductDetailViewModel(Product p)
         {
             this.Product = p;
         }

@@ -1,6 +1,8 @@
-﻿using Tracage.Views;
+﻿using Java.Nio.Channels;
+using Tracage.Views;
 using Tracage.ViewModels;
-
+using TracageAlimentaireXamarin.ViewModels;
+using TracageAlimentaireXamarin.Views;
 using Xamarin.Forms;
 
 namespace TracageAlimentaireXamarin
@@ -10,7 +12,7 @@ namespace TracageAlimentaireXamarin
 		public App ()
 		{
             InitializeComponent();
-            MainPage = new MainPage(new MainViewModel());
+            MainPage = new ConnectionPage(new ConnectionViewModel());
         }
 
         protected override void OnStart ()

@@ -15,8 +15,8 @@ namespace TracageAlimentaireXamarin.Droid
         protected override void OnCreate(Bundle bundle)
         {
             MobileBarcodeScanner.Initialize(this.Application);
-            //TabLayoutResource = Resource.Layout.Tabbar;
-            //ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
             Xamarin.Forms.Forms.Init(this, bundle);

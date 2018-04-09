@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Tracage.Views"
+             x:Class="TracageAlimentaireXamarin.Views.ConnectionPage"
+             >
+    <RelativeLayout>
+        <Grid 
+        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+            <StackLayout>
+                <Label 
+                        Text="Welcome to this food tracker app!"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="Medium"/>
+
+                <Entry 
+                        x:Name="mailEntry"
+                        Placeholder="e-mail"    
+                        TextChanged="Entry_TextChanged"
+                        Text="{Binding Path=Email}"
+                        Keyboard="Email"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+
+                <Entry
+                        x:Name="passwordEntry"
+                        Placeholder="password"
+                        TextChanged="Entry_TextChanged"          
+                        Text ="{Binding Path=Password}"
+                        IsPassword="True"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+
+                <Button
+                        x:Name="LoginButton"
+                        Text="LOGIN"
+                        Command="{Binding Path=LoginCommand}"
+                        Margin="10,0"
+                        TextColor="White"
+                        BackgroundColor="LightSkyBlue"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"/>
+
+            </StackLayout>
+        </Grid>
+    </RelativeLayout>
+</ContentPage>

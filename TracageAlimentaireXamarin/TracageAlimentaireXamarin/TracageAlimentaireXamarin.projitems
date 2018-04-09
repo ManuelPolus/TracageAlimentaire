@@ -16,22 +16,30 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\ProductChecker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\PasswordHasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Adresse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Etape.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Organisation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Processus.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Produit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Address.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Organization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Process.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProductStateDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Scan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SharedScanner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SousTraitant.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Traitement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Utilisateur.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Step.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SubContractor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Treatment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StepInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml.cs">
+      <DependentUpon>ConnectionPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -64,5 +72,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

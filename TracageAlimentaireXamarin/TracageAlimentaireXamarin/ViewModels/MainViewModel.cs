@@ -50,9 +50,9 @@ namespace Tracage.ViewModels
             IsLoading = false;
             if (resultScan != null)
             {
-                var pdt =FindProduct(resultScan);
+                Product pdt =(Product) FindProduct(resultScan);
 
-                if (ProductChecker.produitFini(pdt))
+                if (pdt.IsFinal())
                 {
                     await Navigation.PushModalAsync(new ProductDetail(new ProductDetailViewModel(pdt)));
                 }
@@ -63,11 +63,11 @@ namespace Tracage.ViewModels
             }     
         }
 
-        public Produit FindProduct(string qrCode)
+        public Product FindProduct(string qrCode)
         {
-            var restAccessor = new RestAccessor(typeof(Produit));
+            var restAccessor = new RestAccessor<Product>(typeof(Product));
             var result = restAccessor.GetByIdentifier(qrCode);
-            return (Produit)result;
+            return (Product)result;
         }
     }
 }

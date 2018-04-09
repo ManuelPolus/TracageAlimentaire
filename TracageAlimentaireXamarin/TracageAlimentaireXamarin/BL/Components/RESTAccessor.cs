@@ -8,7 +8,7 @@ using Tracage.Models;
 
 namespace TracageAlimentaireXamarin.BL.Components
 {
-    public class RestAccessor : IDataAccessor
+    public class RestAccessor<T> : IDataAccessor<T> where T : class
     {
         private RestClient<object> _client;
 
@@ -25,18 +25,18 @@ namespace TracageAlimentaireXamarin.BL.Components
             return _client.SaveItemAsync(currentObject).Result;
         }
 
-        public IEnumerable<T> GetAsList<T>()
+        public IEnumerable<T> GetAsList()
         {
             
             return (IEnumerable<T>) _client.GetDataAsync().Result;
         }
 
-        public object GetByIdentifier<T>(T identifier)
+        public T GetByIdentifier(object identifier)
         {
-            return _client.GetItemAsync(identifier).Result;
+            return  _client.GetItemAsync(identifier).Result as T;
         }
 
-        public bool DeleteByIdentifier<T>(T identifier)
+        public bool DeleteByIdentifier(object identifier)
         {
             return _client.DeleteItemAsync(identifier).Result;
         }
