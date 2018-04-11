@@ -12,7 +12,7 @@ namespace TracageAlimentaireXamarin
 		public App ()
 		{
             InitializeComponent();
-            MainPage = new ConnectionPage(new ConnectionViewModel());
+            MainPage = new MainPage(new MainViewModel());
         }
 
         protected override void OnStart ()

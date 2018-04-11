@@ -50,23 +50,24 @@ namespace Tracage.ViewModels
             IsLoading = false;
             if (resultScan != null)
             {
-                Product pdt =(Product) FindProduct(resultScan);
+                Product pdt = FindProduct(resultScan);
+                if (pdt != null)
+                {
 
-                if (pdt.IsFinal())
-                {
-                    await Navigation.PushModalAsync(new ProductDetail(new ProductDetailViewModel(pdt)));
+                    if (pdt.IsFinal())
+                        await Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(pdt)));
+
+                    else
+                        await Navigation.PushModalAsync(new ConnectionPage(new ConnectionViewModel(pdt)));
+
                 }
-                else
-                {
-                    //TODO: rediriger vers la page de validation de traitement / étape.
-                }
-            }     
+            }
         }
 
         public Product FindProduct(string qrCode)
         {
-            var restAccessor = new RestAccessor<Product>(typeof(Product));
-            var result = restAccessor.GetByIdentifier(qrCode);
+            var restAccessor = new RestAccessor<Product>(new Product());
+            Product result = restAccessor.GetByIdentifier(qrCode);
             return (Product)result;
         }
     }

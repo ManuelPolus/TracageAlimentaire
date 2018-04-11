@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "http://04335c06.ngrok.io/api/"; //TODO replace with real 
+        private const string Resturl = "https://0fb3f85a.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)
@@ -36,17 +37,22 @@ namespace Tracage.DAL
 
         public async Task<T> GetItemAsync(object identifier)
         {
-            var uri = new Uri(string.Format(Resturl + _resource, identifier));
+            var uri = new Uri(Resturl + _resource+"/"+ identifier);
             try
             {
-                //TODO check if this works out with a real REST service in the back
-                var response = await _client.GetAsync(uri);
+                //TODO gérer si le résultat est 404
+                var response = _client.GetAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
 
                     var content = await response.Content.ReadAsStringAsync();
                     T item = JsonConvert.DeserializeObject<T>(content);
                     return item;
+                }
+
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return default(T);
                 }
             }
             catch (Exception e)
@@ -90,7 +96,7 @@ namespace Tracage.DAL
 
         }
 
-        public async Task<bool> DeleteItemAsync(T id)
+        public async Task<bool> DeleteItemAsync(object id)
         {
             try
             {

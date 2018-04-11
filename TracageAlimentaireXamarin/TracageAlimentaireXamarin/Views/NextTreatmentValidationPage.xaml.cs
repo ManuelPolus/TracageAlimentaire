@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace TracageAlimentaireXamarin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProductDetail : ContentPage
+	public partial class NextTreatmentValidationPage : ContentPage
 	{
-		public ProductDetail (ProductDetailViewModel vm)
+		public NextTreatmentValidationPage (NextTreatmentValidationViewModel vm)
 		{
-            BindingContext = vm;
-            vm.Navigation = Navigation;
+		    vm.Navigation = Navigation;
+		    BindingContext = vm;
 			InitializeComponent ();
 		}
 	}

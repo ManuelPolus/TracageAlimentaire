@@ -8,6 +8,7 @@ using Tracage.Models;
 using Tracage.ViewModels;
 using Tracage.Views;
 using TracageAlimentaireXamarin.BL.Components;
+using TracageAlimentaireXamarin.Views;
 using TracageAlmentaireWeb.BL.Components;
 using Xamarin.Forms;
 
@@ -18,11 +19,13 @@ namespace TracageAlimentaireXamarin.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private string email;
         private string password;
+        private Product scannedProduct;
 
-        public ConnectionViewModel()
+        public ConnectionViewModel(Product p)
         {
             LoginCommand = new Command(Login);
-            
+            this.scannedProduct = p;
+
         }
 
         public INavigation Navigation { get; set; }
@@ -66,12 +69,14 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         }
 
-        public void Login()
+        
+
+        public async void Login()
         {
-            RestAccessor<User> ra = new RestAccessor<User>(typeof(User));
-            User loginUser = ra.GetByIdentifier(Email);
-            PasswordHasher.CheckPassword(Password, loginUser.Password);
-            App.Current.MainPage = new MainPage(new MainViewModel());
+            //RestAccessor<User> ra = new RestAccessor<User>(typeof(User));
+            //User loginUser = ra.GetByIdentifier(Email);
+            //if(PasswordHasher.CheckPassword(Password, loginUser.Password))
+           await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
         }
 
     }

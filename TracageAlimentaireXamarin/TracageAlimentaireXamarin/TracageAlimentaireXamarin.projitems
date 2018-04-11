@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\ProductChanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\PasswordHasher.cs" />
@@ -34,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NextTreatmentValidationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StepInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml.cs">
@@ -43,12 +45,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ProductDetail.xaml.cs">
-      <DependentUpon>ProductDetail.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NextTreatmentValidationPage.xaml.cs">
+      <DependentUpon>NextTreatmentValidationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\StepInfo.xaml.cs">
-      <DependentUpon>StepInfo.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProductDetailPage.xaml.cs">
+      <DependentUpon>ProductDetailPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\StepInfoPage.xaml.cs">
+      <DependentUpon>StepInfoPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -59,13 +65,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProductDetail.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProductDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\StepInfo.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\StepInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -75,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NextTreatmentValidationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

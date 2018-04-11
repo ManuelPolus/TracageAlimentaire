@@ -10,19 +10,21 @@ namespace TracageAlimentaireXamarin.BL.Components
 {
     public class RestAccessor<T> : IDataAccessor<T> where T : class
     {
-        private RestClient<object> _client;
+        private RestClient<T> _client;
 
         public object DataType { get; set; }
 
         public RestAccessor(object dataType)
         {
             this.DataType = dataType;
-            _client = new RestClient<object>("/" + dataType.GetType() + "s");
+            _client = new RestClient<T>("/" + dataType.GetType().Name + "s");
         }
+
+        
 
         public bool Save(object currentObject)
         {
-            return _client.SaveItemAsync(currentObject).Result;
+            return _client.SaveItemAsync((T)currentObject).Result;
         }
 
         public IEnumerable<T> GetAsList()
@@ -33,7 +35,7 @@ namespace TracageAlimentaireXamarin.BL.Components
 
         public T GetByIdentifier(object identifier)
         {
-            return  _client.GetItemAsync(identifier).Result as T;
+           return _client.GetItemAsync(identifier).Result;
         }
 
         public bool DeleteByIdentifier(object identifier)
