@@ -9,5 +9,6 @@
             <Label Text="{Binding Path=TreatmentToValidate.OutgoingState.Status}"/>
             <Button Text="VALIDATE TREATMENT" Command="{Binding ValidateCommand}"/>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

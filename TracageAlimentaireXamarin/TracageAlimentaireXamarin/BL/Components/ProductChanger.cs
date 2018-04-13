@@ -14,11 +14,29 @@ namespace TracageAlimentaireXamarin.BL.Components
 
         public static void ChangeProductreatment(Product p)
         {
-            Treatment nextTreatment = FindNextTreatment(p);
+            try
+            {
+                if (p.States.ElementAt(p.States.Count - 1).Status != "final")
+                {
+                    Treatment nextTreatment = FindNextTreatment(p);
+                    if (nextTreatment != null)
+                    {
+                        p.CurrentTreatment = nextTreatment;
+                        p.States.Add(nextTreatment.OutgoingState);
+                    }
+                    else
+                    {
+                        p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException oorex)
+            {
+                p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+            }
 
-            p.CurrentTreatment = nextTreatment;
-            p.States.Add(nextTreatment.OutgoingState);
-            
+
+
         }
 
         public static Treatment FindNextTreatment(Product p)
@@ -44,7 +62,6 @@ namespace TracageAlimentaireXamarin.BL.Components
                             //TODO : nex step for current treatment
                             //the case where the following treatment is in the next step 
                         }
-                        
                     }
                     else
                     {

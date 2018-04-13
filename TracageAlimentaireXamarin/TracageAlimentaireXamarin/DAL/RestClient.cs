@@ -12,7 +12,7 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "https://54004708.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://d4964225.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)
@@ -93,8 +93,38 @@ namespace Tracage.DAL
                 return false;
             }
 
+        }
+
+        public async Task<bool> UpdateItemAsync(T item)
+        {
+            try
+            {
+                var uri = new Uri(string.Format(Resturl +"/update/"+ _resource, string.Empty));
+
+                var json = JsonConvert.SerializeObject(item);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+
+                response = _client.PostAsync(uri, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"item successfully saved.");
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                return false;
+            }
 
         }
+
+
 
         public async Task<bool> DeleteItemAsync(object id)
         {

@@ -29,6 +29,9 @@ namespace TracageAlimentaireXamarin.ViewModels
             {
                 ValidateCommand = new Command(ValidateTreatment);
                 this.P = p;
+                p.States = new List<State>();
+                RestAccessor<Treatment> rat = new RestAccessor<Treatment>(new Treatment());
+                p.CurrentTreatment = rat.GetByIdentifier(2);
                 this.treatmentToValidate = ProductChanger.FindNextTreatment(p);
 
             }
@@ -37,7 +40,7 @@ namespace TracageAlimentaireXamarin.ViewModels
                 this.treatmentToValidate = new Treatment();
                 treatmentToValidate.Name = "Tuage";
                 treatmentToValidate.Description = "la banane est sauvagement assassinée";
-                State = new State { Status = "si toi aussi t'es une ppetite banane comme moi t'as intérêt à courir vite si tu veux pas finir dans mariokart."};
+                State = new State { Status = "si toi aussi t'es une ppetite banane comme moi t'as intérêt à courir vite si tu veux pas finir dans mariokart." };
                 treatmentToValidate.OutgoingState = this.State;
 
             }
@@ -83,7 +86,9 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public void ValidateTreatment()
         {
-            //TODO: logique 
+            ProductChanger.ChangeProductreatment(P);
+            RestAccessor<Product> rap = new RestAccessor<Product>(P);
+            rap.Update(P);
             Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(P)));
         }
 

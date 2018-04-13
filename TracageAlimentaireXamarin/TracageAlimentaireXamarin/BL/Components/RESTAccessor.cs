@@ -20,6 +20,10 @@ namespace TracageAlimentaireXamarin.BL.Components
             _client = new RestClient<T>("/" + dataType.GetType().Name + "s");
         }
 
+        public bool Update(T objectToUpdate)
+        {
+            return _client.UpdateItemAsync(objectToUpdate).Result;
+        }
         
 
         public bool Save(object currentObject)
