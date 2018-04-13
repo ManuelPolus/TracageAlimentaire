@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TracageAlimentaireXamarin.BL.Components;
 using TracageAlmentaireWeb.Models;
 
 namespace Tracage.Models
@@ -10,6 +11,9 @@ namespace Tracage.Models
 
         public Product()
         {
+            this.ProcessId = 2;
+            RestAccessor<Process> ra = new RestAccessor<Process>(new Process());
+            this.Process = ra.GetByIdentifier(ProcessId);
             this.CurrentTreatment = Process.Steps.ElementAt(0).Treatments.ElementAt(0);
             QRCode = String.IsNullOrEmpty(QRCode)? this.Id+this.GetType().Name : QRCode;
         }
@@ -24,6 +28,8 @@ namespace Tracage.Models
         public string Description { get; set; }
 
         public Process Process { get; set; }
+
+        public long ProcessId { get; set; }
 
         public Treatment CurrentTreatment { get; set; }
 

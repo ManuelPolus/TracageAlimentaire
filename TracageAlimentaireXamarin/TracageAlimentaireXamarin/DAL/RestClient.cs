@@ -12,7 +12,7 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "https://0fb3f85a.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://54004708.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)
@@ -37,7 +37,7 @@ namespace Tracage.DAL
 
         public async Task<T> GetItemAsync(object identifier)
         {
-            var uri = new Uri(Resturl + _resource+"/"+ identifier);
+            var uri = new Uri(Resturl + _resource+"/"+ identifier+"/");
             try
             {
                 //TODO gérer si le résultat est 404
@@ -59,7 +59,7 @@ namespace Tracage.DAL
             {
                 Console.WriteLine("requets failed");
                 Console.WriteLine(e.StackTrace);
-
+                return default(T);
             }
 
             throw new Exception("kys");
@@ -77,7 +77,7 @@ namespace Tracage.DAL
 
                 HttpResponseMessage response = null;
 
-                response = await _client.PostAsync(uri, content);
+                response =_client.PostAsync(uri, content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -102,7 +102,7 @@ namespace Tracage.DAL
             {
                 var uri = new Uri(string.Format(Resturl + _resource, id));
 
-                var response = await _client.DeleteAsync(uri);
+                var response =  _client.DeleteAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"item successfully deleted.");

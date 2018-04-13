@@ -20,12 +20,13 @@ namespace TracageAlimentaireXamarin.ViewModels
         private string email;
         private string password;
         private Product scannedProduct;
+        private string errorMessage;
 
         public ConnectionViewModel(Product p)
         {
             LoginCommand = new Command(Login);
             this.scannedProduct = p;
-
+            this.ErrorMessage = String.Empty;
         }
 
         public INavigation Navigation { get; set; }
@@ -69,14 +70,42 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         }
 
-        
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+
+                    if (this.PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("ErrorMessage"));
+                    }
+                }
+            }
+
+        }
+
 
         public async void Login()
         {
-            //RestAccessor<User> ra = new RestAccessor<User>(typeof(User));
-            //User loginUser = ra.GetByIdentifier(Email);
-            //if(PasswordHasher.CheckPassword(Password, loginUser.Password))
-           await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
+            try
+            {
+                RestAccessor<User> ra = new RestAccessor<User>(new User());
+                User loginUser = ra.GetByIdentifier(email);
+
+                if (PasswordHasher.CheckPassword(Password, loginUser.Password))
+                    await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
+                else
+                    errorMessage = "identifiants erronnés";
+            }
+            catch (NullReferenceException nullex)
+            {
+                ErrorMessage = "Veuillez insérer vos identifiants";
+            }
+
         }
 
     }

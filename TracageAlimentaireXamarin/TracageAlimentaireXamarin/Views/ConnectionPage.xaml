@@ -11,10 +11,12 @@
 
             <StackLayout>
                 <Label 
-                        Text="Welcome to this food tracker app!"
+                        Text="{Binding Path=ErrorMessage}"
                         VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand"
-                        FontSize="Medium"/>
+                        HorizontalOptions="FillAndExpand"
+                        FontSize="Large"
+                        TextColor="Tomato"
+                    BackgroundColor="Aqua"/>
 
                 <Entry 
                         x:Name="mailEntry"

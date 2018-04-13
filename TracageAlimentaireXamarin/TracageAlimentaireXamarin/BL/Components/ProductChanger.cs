@@ -33,7 +33,18 @@ namespace TracageAlimentaireXamarin.BL.Components
 
                     if (nexTreatment == null)
                     {
-                        nexTreatment = treatments.ElementAt(i).Id == p.CurrentTreatment.Id ? treatments.ElementAt(i + 1) : null;
+                        try
+                        {
+                            nexTreatment = treatments.ElementAt(i).Id == p.CurrentTreatment.Id
+                                ? treatments.ElementAt(i + 1)
+                                : null;
+                        }
+                        catch (Exception e)
+                        {
+                            //TODO : nex step for current treatment
+                            //the case where the following treatment is in the next step 
+                        }
+                        
                     }
                     else
                     {

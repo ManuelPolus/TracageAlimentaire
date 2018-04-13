@@ -11,7 +11,7 @@
             
             <StackLayout>
                 <Label
-                   Text="Bienvenue ! appuyez sur le bouton de scan pour commencer..." 
+                   Text="{Binding Path=Message}" 
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
                    Margin="10,0"

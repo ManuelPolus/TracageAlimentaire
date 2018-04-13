@@ -13,7 +13,7 @@ namespace Tracage.ViewModels
     {
 
         private bool isLoading;
-
+        private string message;
         public Command ScanCommand { get; set; }
 
         public INavigation Navigation { get; set; }
@@ -32,12 +32,33 @@ namespace Tracage.ViewModels
             }
         }
 
+        public string Message
+        {
+            get { return message; }
+
+            private set
+            {
+                if (message != value)
+                {
+                    message = value;
+                    PropertyChanged(this, new PropertyChangedEventArgs("Message"));
+                }
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
         public MainViewModel()
         {
+            this.message = "Welcome the the application ! ";
+            ScanCommand = new Command(ScanAsync);
+        }
+
+        public MainViewModel(string message)
+        {
+            this.message = message;
             ScanCommand = new Command(ScanAsync);
         }
 
@@ -61,12 +82,20 @@ namespace Tracage.ViewModels
                         await Navigation.PushModalAsync(new ConnectionPage(new ConnectionViewModel(pdt)));
 
                 }
+                else
+                {
+                    this.Message = "Oups this qr doesn't belong to the label :/ ...";
+                }
             }
+            
         }
+
+
 
         public Product FindProduct(string qrCode)
         {
-            var restAccessor = new RestAccessor<Product>(new Product());
+            Product p = new Product();
+            var restAccessor = new RestAccessor<Product>(p);
             Product result = restAccessor.GetByIdentifier(qrCode);
             return (Product)result;
         }

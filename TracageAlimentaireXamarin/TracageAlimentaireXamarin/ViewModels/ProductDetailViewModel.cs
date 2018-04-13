@@ -15,8 +15,24 @@ namespace TracageAlimentaireXamarin.ViewModels
         public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private Product product;
 
-        public Product Product { get; set; }
+        public Product Product
+        {
+            get { return product; }
+            set
+            {
+                if (product != value)
+                {
+                    product = value;
+
+                    if (this.PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Product"));
+                    }
+                }
+            }
+        }
 
         public ProductDetailViewModel(Product p)
         {
