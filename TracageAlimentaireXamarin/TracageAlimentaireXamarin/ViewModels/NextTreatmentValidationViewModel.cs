@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Tracage.Models;
@@ -29,20 +30,13 @@ namespace TracageAlimentaireXamarin.ViewModels
             {
                 ValidateCommand = new Command(ValidateTreatment);
                 this.P = p;
-                p.States = new List<State>();
-                RestAccessor<Treatment> rat = new RestAccessor<Treatment>(new Treatment());
-                p.CurrentTreatment = rat.GetByIdentifier(2);
+
                 this.treatmentToValidate = ProductChanger.FindNextTreatment(p);
 
             }
             catch (NullReferenceException nullex)
             {
-                this.treatmentToValidate = new Treatment();
-                treatmentToValidate.Name = "Tuage";
-                treatmentToValidate.Description = "la banane est sauvagement assassinée";
-                State = new State { Status = "si toi aussi t'es une ppetite banane comme moi t'as intérêt à courir vite si tu veux pas finir dans mariokart." };
-                treatmentToValidate.OutgoingState = this.State;
-
+             
             }
         }
 
@@ -88,7 +82,7 @@ namespace TracageAlimentaireXamarin.ViewModels
         {
             ProductChanger.ChangeProductreatment(P);
             RestAccessor<Product> rap = new RestAccessor<Product>(P);
-            rap.Update(P);
+            rap.Update(P,P.QRCode);
             Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(P)));
         }
 

@@ -3,8 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TracageAlimentaireXamarin.Views.ProductDetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text ="{Binding Path=Product.Name}"/>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="product name :" />
+                <Label Text ="{Binding Path=Product.Name}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="process name :" />
+                <Label Text ="{Binding Path=Product.Process.Name}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ListView x:Name="ItemListView" ItemsSource="{Binding Path=ObservableStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label Text="previous states of the product :" />
+                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                                        <Label Text="{Binding Path=Status}" FontSize="18" VerticalOptions="CenterAndExpand" Margin="5,0"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -4,10 +4,42 @@
              x:Class="TracageAlimentaireXamarin.Views.NextTreatmentValidationPage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="{Binding Path=TreatmentToValidate.Name}"/>
-            <Label Text="{Binding Path=TreatmentToValidate.Description}"/>
-            <Label Text="{Binding Path=TreatmentToValidate.OutgoingState.Status}"/>
-            <Button Text="VALIDATE TREATMENT" Command="{Binding ValidateCommand}"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="treatment : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=P.CurrentTreatment.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=P.CurrentTreatment.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="Current product state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=P.CurrentTreatment.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Label Text="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text=" upcoming treatment to validate: " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=TreatmentToValidate.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=TreatmentToValidate.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="outgoing state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Path=TreatmentToValidate.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Label Text="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+            <Button Text="VALIDATE TREATMENT" Command="{Binding ValidateCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
 
     </ContentPage.Content>

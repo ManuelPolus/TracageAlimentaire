@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Tracage.Models;
+using TracageAlmentaireWeb.Models;
 
 namespace TracageAlimentaireXamarin.BL.Components
 {
@@ -16,6 +17,9 @@ namespace TracageAlimentaireXamarin.BL.Components
         {
             try
             {
+                if (p.States == null)
+                    p.States = new List<State>();
+
                 if (p.States.ElementAt(p.States.Count - 1).Status != "final")
                 {
                     Treatment nextTreatment = FindNextTreatment(p);
@@ -27,12 +31,24 @@ namespace TracageAlimentaireXamarin.BL.Components
                     else
                     {
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+                        p.States.Add(nextTreatment.OutgoingState);
+
                     }
                 }
             }
             catch (ArgumentOutOfRangeException oorex)
             {
-                p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+                Treatment nextTreatment = FindNextTreatment(p);
+                if (nextTreatment != null)
+                {
+                    p.CurrentTreatment = nextTreatment;
+                    p.States.Add(nextTreatment.OutgoingState);
+                }
+                else
+                {
+                    p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+                    p.States.Add(nextTreatment.OutgoingState);
+                }
             }
 
 
@@ -57,10 +73,9 @@ namespace TracageAlimentaireXamarin.BL.Components
                                 ? treatments.ElementAt(i + 1)
                                 : null;
                         }
-                        catch (Exception e)
+                        catch (ArgumentOutOfRangeException e)
                         {
-                            //TODO : nex step for current treatment
-                            //the case where the following treatment is in the next step 
+                            nexTreatment = p.Process.Steps.ElementAt(p.Process.Steps.IndexOf(step)+1).Treatments.ElementAt(0);
                         }
                     }
                     else

@@ -12,14 +12,13 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "https://d4964225.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://f1c90d93.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)
         {
             _client = new HttpClient();
             this._resource = resource;
-            _client.MaxResponseContentBufferSize = 256000;
         }
 
         public async Task<IEnumerable<T>> GetDataAsync()
@@ -95,25 +94,25 @@ namespace Tracage.DAL
 
         }
 
-        public async Task<bool> UpdateItemAsync(T item)
+        public async Task<bool> UpdateItemAsync(T item,string identifier)
         {
             try
             {
-                var uri = new Uri(string.Format(Resturl +"/update/"+ _resource, string.Empty));
+                var uri = new Uri(string.Format(Resturl +"/update"+ _resource + "/"+identifier, string.Empty));
 
                 var json = JsonConvert.SerializeObject(item);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = null;
 
-                response = _client.PostAsync(uri, content).Result;
+                response = _client.PutAsync(uri, content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"item successfully saved.");
                     return true;
                 }
-
+               Console.WriteLine(response.StatusCode);
                 return false;
             }
             catch (Exception e)
