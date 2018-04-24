@@ -32,8 +32,6 @@ namespace Tracage.Models
 
         public List<State> States { get; set; }
 
-        public List<long> StatesIds { get; set; }
-
         public string Description { get; set; }
 
         public Process Process { get; set; }

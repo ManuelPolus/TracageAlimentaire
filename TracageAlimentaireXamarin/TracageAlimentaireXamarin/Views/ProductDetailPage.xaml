@@ -11,17 +11,18 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label Text="process name :" />
-                <Label Text ="{Binding Path=Product.Process.Name}"/>
+                <Label Text="process name :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text ="{Binding Path=Product.Process.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </StackLayout>
-
+            <Label Text ="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Label Text="States of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <ListView x:Name="ItemListView" ItemsSource="{Binding Path=ObservableStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                    <Label Text="previous states of the product :" />
+                                   
                                     <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
                                         <Label Text="{Binding Path=Status}" FontSize="18" VerticalOptions="CenterAndExpand" Margin="5,0"/>
                                     </StackLayout>

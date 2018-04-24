@@ -12,7 +12,7 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "https://7ae9ec9b.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://b1bbd49e.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)

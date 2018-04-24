@@ -17,6 +17,7 @@ namespace TracageAlimentaireXamarin.BL.Components
         {
             try
             {
+                
                 if (p.States == null)
                     p.States = new List<State>();
 
@@ -27,15 +28,11 @@ namespace TracageAlimentaireXamarin.BL.Components
                     {
                         p.CurrentTreatment = nextTreatment;
                         p.States.Add(nextTreatment.OutgoingState);
-                        p.StatesIds.Add(nextTreatment.OutgoingState.Id);
-
                     }
                     else
                     {
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
-                        p.States.Add(nextTreatment.OutgoingState);
-                        p.StatesIds.Add(nextTreatment.OutgoingState.Id);
-
+                        p.States.Add(p.Process.Steps.ElementAt(0).Treatments.ElementAt(0).OutgoingState);
                     }
                 }
             }
@@ -46,13 +43,11 @@ namespace TracageAlimentaireXamarin.BL.Components
                 {
                     p.CurrentTreatment = nextTreatment;
                     p.States.Add(nextTreatment.OutgoingState);
-                    p.StatesIds.Add(nextTreatment.OutgoingState.Id);
                 }
                 else
                 {
                     p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                     p.States.Add(nextTreatment.OutgoingState);
-                    p.StatesIds.Add(nextTreatment.OutgoingState.Id);
                 }
             }
 
@@ -69,7 +64,11 @@ namespace TracageAlimentaireXamarin.BL.Components
                 List<Treatment> treatments = step.Treatments;
                 for (int i = 0; i < treatments.Count; i++)
                 {
+                    if (p.CurrentTreatment == null)
+                    {
+                        p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
 
+                    }
                     if (nexTreatment == null)
                     {
                         try
@@ -82,12 +81,13 @@ namespace TracageAlimentaireXamarin.BL.Components
                         {
                             try
                             {
+                                
                                 nexTreatment = p.Process.Steps.ElementAt(p.Process.Steps.IndexOf(step) + 1).Treatments
                                     .ElementAt(0);
                             }
                             catch (Exception ex)
                             {
-                                p.States.Add(new State {Status = "final"});
+                                p.States.Add(new State { Status = "final" });
                             }
 
                         }
