@@ -12,7 +12,7 @@ namespace Tracage.DAL
     public class RestClient<T>
     {
         private readonly HttpClient _client;
-        private const string Resturl = "https://f1c90d93.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://7ae9ec9b.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
 
         public RestClient(string resource)
@@ -25,7 +25,7 @@ namespace Tracage.DAL
         {
             List<T> items = new List<T>();
             var uri = new Uri(string.Format(Resturl + _resource, string.Empty));
-            var response = await _client.GetAsync(uri);
+            var response = _client.GetAsync(uri).Result;
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

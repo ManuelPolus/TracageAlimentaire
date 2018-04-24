@@ -26,7 +26,6 @@ namespace Tracage.Views
                 if (result)
                     Environment.Exit(0);
             });
-
             return true;
 
         }

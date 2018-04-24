@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NextTreatmentValidationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProcessSelectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StepInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml.cs">
@@ -47,6 +48,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\NextTreatmentValidationPage.xaml.cs">
       <DependentUpon>NextTreatmentValidationPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProcessSelectionPage.xaml.cs">
+      <DependentUpon>ProcessSelectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProductDetailPage.xaml.cs">
@@ -87,6 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NextTreatmentValidationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProcessSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TracageAlimentaireXamarin.Views.ProcessSelectionPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+            <Label Text="this product isn't bound to any process, please choose one"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ListView x:Name="ItemListView" ItemsSource="{Binding Path=Processes}" VerticalOptions="CenterAndExpand" SelectedItem="{Binding Path= SelectedProcess}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                                <Label Text="{Binding Path=Name}" FontSize="18" VerticalOptions="CenterAndExpand" Margin="5,0"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Command="{Binding Path=ProcessValidationCommand}"
+                    Text="VALIDATE PROCESS SELECTION"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

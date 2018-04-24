@@ -34,7 +34,7 @@ namespace TracageAlimentaireXamarin.ViewModels
                 this.treatmentToValidate = ProductChanger.FindNextTreatment(p);
 
             }
-            catch (NullReferenceException nullex)
+            catch (Exception nullex)
             {
              
             }

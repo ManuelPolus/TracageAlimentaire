@@ -32,9 +32,8 @@ namespace TracageAlimentaireXamarin.BL.Components
         }
 
         public IEnumerable<T> GetAsList()
-        {
-            
-            return (IEnumerable<T>) _client.GetDataAsync().Result;
+        { 
+            return _client.GetDataAsync().Result;
         }
 
         public T GetByIdentifier(object identifier)

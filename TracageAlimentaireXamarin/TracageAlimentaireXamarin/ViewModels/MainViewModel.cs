@@ -77,7 +77,6 @@ namespace Tracage.ViewModels
 
                     if (pdt.IsFinal())
                         await Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(pdt)));
-
                     else
                         await Navigation.PushModalAsync(new ConnectionPage(new ConnectionViewModel(pdt)));
 
@@ -87,7 +86,7 @@ namespace Tracage.ViewModels
                     this.Message = "Oups this qr doesn't belong to the label :/ ...";
                 }
             }
-            
+
         }
 
 

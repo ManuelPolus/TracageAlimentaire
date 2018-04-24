@@ -27,11 +27,14 @@ namespace TracageAlimentaireXamarin.BL.Components
                     {
                         p.CurrentTreatment = nextTreatment;
                         p.States.Add(nextTreatment.OutgoingState);
+                        p.StatesIds.Add(nextTreatment.OutgoingState.Id);
+
                     }
                     else
                     {
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                         p.States.Add(nextTreatment.OutgoingState);
+                        p.StatesIds.Add(nextTreatment.OutgoingState.Id);
 
                     }
                 }
@@ -43,11 +46,13 @@ namespace TracageAlimentaireXamarin.BL.Components
                 {
                     p.CurrentTreatment = nextTreatment;
                     p.States.Add(nextTreatment.OutgoingState);
+                    p.StatesIds.Add(nextTreatment.OutgoingState.Id);
                 }
                 else
                 {
                     p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                     p.States.Add(nextTreatment.OutgoingState);
+                    p.StatesIds.Add(nextTreatment.OutgoingState.Id);
                 }
             }
 
@@ -73,9 +78,18 @@ namespace TracageAlimentaireXamarin.BL.Components
                                 ? treatments.ElementAt(i + 1)
                                 : null;
                         }
-                        catch (ArgumentOutOfRangeException e)
+                        catch (Exception e)
                         {
-                            nexTreatment = p.Process.Steps.ElementAt(p.Process.Steps.IndexOf(step)+1).Treatments.ElementAt(0);
+                            try
+                            {
+                                nexTreatment = p.Process.Steps.ElementAt(p.Process.Steps.IndexOf(step) + 1).Treatments
+                                    .ElementAt(0);
+                            }
+                            catch (Exception ex)
+                            {
+                                p.States.Add(new State {Status = "final"});
+                            }
+
                         }
                     }
                     else

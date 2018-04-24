@@ -95,11 +95,18 @@ namespace TracageAlimentaireXamarin.ViewModels
             {
                 RestAccessor<User> ra = new RestAccessor<User>(new User());
                 User loginUser = ra.GetByIdentifier(email);
-
                 if (PasswordHasher.CheckPassword(Password, loginUser.Password))
-                    await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
+                {
+                    if (scannedProduct.Process == null)
+                        await Navigation.PushModalAsync(new ProcessSelectionPage(new ProcessSelectionViewModel(scannedProduct)));
+
+                    else
+                        await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
+
+                }
                 else
                     errorMessage = "identifiants erronnés";
+
             }
             catch (NullReferenceException nullex)
             {

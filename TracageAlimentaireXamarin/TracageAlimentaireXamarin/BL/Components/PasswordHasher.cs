@@ -7,7 +7,8 @@ namespace TracageAlmentaireWeb.BL.Components
     {
         public static bool CheckPassword(string clearPassword, string encryptedPassword)
         {
-
+            //TODO Sortez (les) couverts (ceux en argent de mamie   ) !
+            // # LA SÉCURITÉ !!
             return true;
         }
     }

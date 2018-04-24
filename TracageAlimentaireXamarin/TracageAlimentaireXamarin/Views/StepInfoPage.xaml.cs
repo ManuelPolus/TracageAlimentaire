@@ -18,5 +18,7 @@ namespace TracageAlimentaireXamarin.Views
             vm.Navigation = Navigation;
             InitializeComponent ();
 		}
+
+
 	}
 }
