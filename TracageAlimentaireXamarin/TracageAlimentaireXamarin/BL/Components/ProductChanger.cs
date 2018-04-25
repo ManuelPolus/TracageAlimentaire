@@ -41,13 +41,13 @@ namespace TracageAlimentaireXamarin.BL.Components
                 Treatment nextTreatment = FindNextTreatment(p);
                 if (nextTreatment != null)
                 {
+                    p.States.Add(p.CurrentTreatment.OutgoingState);
                     p.CurrentTreatment = nextTreatment;
                     p.States.Add(nextTreatment.OutgoingState);
                 }
                 else
                 {
-                    p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
-                    p.States.Add(nextTreatment.OutgoingState);
+                    //you are foucked
                 }
             }
 
