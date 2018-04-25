@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace Tracage.DAL
         {
             _client = new HttpClient();
             this._resource = resource;
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey", "bonsoir");
         }
 
         public async Task<IEnumerable<T>> GetDataAsync()
@@ -40,16 +42,21 @@ namespace Tracage.DAL
             try
             {
                 //TODO gérer si le résultat est 404
+                
                 var response = _client.GetAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
-
                     var content = await response.Content.ReadAsStringAsync();
                     T item = JsonConvert.DeserializeObject<T>(content);
                     return item;
                 }
 
                 if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return default(T);
+                }
+
+                if (response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     return default(T);
                 }
