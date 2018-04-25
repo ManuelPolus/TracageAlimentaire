@@ -95,7 +95,7 @@ namespace TracageAlimentaireXamarin.ViewModels
             {
                 RestAccessor<User> ra = new RestAccessor<User>(new User());
                 User loginUser = ra.GetByIdentifier(email);
-                if (PasswordHasher.CheckPassword(Password, loginUser.Password))
+                if (KeyHasher.CheckPassword(Password, loginUser.Password))
                 {
                     if (scannedProduct.Process == null)
                         await Navigation.PushModalAsync(new ProcessSelectionPage(new ProcessSelectionViewModel(scannedProduct)));

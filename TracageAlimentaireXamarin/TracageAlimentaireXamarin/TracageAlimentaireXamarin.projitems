@@ -18,7 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\ProductChanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\PasswordHasher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\KeyHasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Address.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Organization.cs" />

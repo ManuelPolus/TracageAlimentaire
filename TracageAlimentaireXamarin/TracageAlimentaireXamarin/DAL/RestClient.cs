@@ -7,20 +7,24 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using TracageAlmentaireWeb.BL.Components;
 
 namespace Tracage.DAL
 {
     public class RestClient<T>
     {
+        //TODO: hasher le token avant 'envoi.   
         private readonly HttpClient _client;
         private const string Resturl = "https://8f25fd03.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
+        private readonly string key = "$*aT9L5$fsgg(10fV2ljv[CmlB.U)z";
 
         public RestClient(string resource)
         {
             _client = new HttpClient();
             this._resource = resource;
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey", "bonsoir");
+            string encryptedKey = KeyHasher.Hash(key);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey",encryptedKey);
         }
 
         public async Task<IEnumerable<T>> GetDataAsync()
