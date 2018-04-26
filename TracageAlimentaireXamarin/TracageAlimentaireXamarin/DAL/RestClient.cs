@@ -27,6 +27,7 @@ namespace Tracage.DAL
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey",encryptedKey);
         }
 
+
         public async Task<IEnumerable<T>> GetDataAsync()
         {
             List<T> items = new List<T>();
@@ -72,11 +73,11 @@ namespace Tracage.DAL
                 return default(T);
             }
 
-            throw new Exception("kys");
+            throw new Exception("something went wrogn but what ?");
 
         }
 
-        public async Task<bool> SaveItemAsync(T item)
+        public bool SaveItemAsync(T item)
         {
             try
             {
@@ -94,6 +95,10 @@ namespace Tracage.DAL
                     Debug.WriteLine(@"item successfully saved.");
                     return true;
                 }
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    return false;
+                }
 
                 return false;
             }
@@ -105,7 +110,7 @@ namespace Tracage.DAL
 
         }
 
-        public async Task<bool> UpdateItemAsync(T item,string identifier)
+        public bool UpdateItemAsync(T item,string identifier)
         {
             try
             {
@@ -120,10 +125,16 @@ namespace Tracage.DAL
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine(@"item successfully saved.");
                     return true;
                 }
-               Console.WriteLine(response.StatusCode);
+
+                
+                if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    return false;
+                }
+
+                Console.WriteLine(response.StatusCode);
                 return false;
             }
             catch (Exception e)
@@ -134,9 +145,7 @@ namespace Tracage.DAL
 
         }
 
-
-
-        public async Task<bool> DeleteItemAsync(object id)
+        public bool DeleteItemAsync(object id)
         {
             try
             {

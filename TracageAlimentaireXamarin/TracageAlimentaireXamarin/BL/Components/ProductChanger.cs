@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Tracage.Models;
 using TracageAlmentaireWeb.Models;
 
@@ -44,10 +43,6 @@ namespace TracageAlimentaireXamarin.BL.Components
                     p.States.Add(p.CurrentTreatment.OutgoingState);
                     p.CurrentTreatment = nextTreatment;
                     p.States.Add(nextTreatment.OutgoingState);
-                }
-                else
-                {
-                    //you are foucked
                 }
             }
 
