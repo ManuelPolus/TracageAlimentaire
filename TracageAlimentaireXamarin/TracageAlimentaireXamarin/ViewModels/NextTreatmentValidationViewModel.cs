@@ -80,9 +80,11 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public void ValidateTreatment()
         {
+            
             ProductChanger.ChangeProductreatment(P);
             RestAccessor<Product> rap = new RestAccessor<Product>(P);
             rap.Update(P,P.QRCode);
+            
             Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(P)));
         }
 

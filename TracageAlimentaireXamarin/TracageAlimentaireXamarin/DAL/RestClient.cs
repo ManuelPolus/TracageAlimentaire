@@ -15,7 +15,7 @@ namespace Tracage.DAL
     {
         //TODO: hasher le token avant 'envoi.   
         private readonly HttpClient _client;
-        private const string Resturl = "https://8f25fd03.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://d58d1b54.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
         private readonly string key = "$*aT9L5$fsgg(10fV2ljv[CmlB.U)z";
 
@@ -24,7 +24,7 @@ namespace Tracage.DAL
             _client = new HttpClient();
             this._resource = resource;
             string encryptedKey = KeyHasher.Hash(key);
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey",encryptedKey);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("APIKey", encryptedKey);
         }
 
 
@@ -43,11 +43,11 @@ namespace Tracage.DAL
 
         public async Task<T> GetItemAsync(object identifier)
         {
-            var uri = new Uri(Resturl + _resource+"/"+ identifier+"/");
+            var uri = new Uri(Resturl + _resource + "/" + identifier + "/");
             try
             {
                 //TODO gérer si le résultat est 404
-                
+
                 var response = _client.GetAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -73,7 +73,7 @@ namespace Tracage.DAL
                 return default(T);
             }
 
-            throw new Exception("something went wrogn but what ?");
+            throw new Exception("something went wrong but what ?");
 
         }
 
@@ -88,7 +88,7 @@ namespace Tracage.DAL
 
                 HttpResponseMessage response = null;
 
-                response =_client.PostAsync(uri, content).Result;
+                response = _client.PostAsync(uri, content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -110,11 +110,11 @@ namespace Tracage.DAL
 
         }
 
-        public bool UpdateItemAsync(T item,string identifier)
+        public bool UpdateItemAsync(T item, string identifier)
         {
             try
             {
-                var uri = new Uri(string.Format(Resturl +"/update"+ _resource + "/"+identifier, string.Empty));
+                var uri = new Uri(string.Format(Resturl + "/update" + _resource + "/" + identifier, string.Empty));
 
                 var json = JsonConvert.SerializeObject(item);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -128,7 +128,7 @@ namespace Tracage.DAL
                     return true;
                 }
 
-                
+
                 if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     return false;
@@ -151,7 +151,7 @@ namespace Tracage.DAL
             {
                 var uri = new Uri(string.Format(Resturl + _resource, id));
 
-                var response =  _client.DeleteAsync(uri).Result;
+                var response = _client.DeleteAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"item successfully deleted.");
@@ -166,7 +166,44 @@ namespace Tracage.DAL
             }
 
         }
-        
+
+
+        public async Task<IEnumerable<T>> GetItemsAsync(object identifier)
+        {
+            var uri = new Uri(Resturl + _resource + "/" + identifier + "/");
+            try
+            {
+                //TODO gérer si le résultat est 404
+
+                var response = _client.GetAsync(uri).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    List<T> items = JsonConvert.DeserializeObject<List<T>>(content);
+                    return items;
+                }
+
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return default(List<T>);
+                }
+
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    return default(List<T>);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("requets failed");
+                Console.WriteLine(e.StackTrace);
+                return default(List<T>);
+            }
+
+            throw new Exception("something went wrong but what ?");
+
+        }
+
 
     }
 

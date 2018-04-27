@@ -15,12 +15,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Components\PasswordChecker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\ProductChanger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\IDataAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\RestAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\KeyHasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Address.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CustomScanOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Organization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Process.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Product.cs" />
@@ -101,5 +103,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Images\cadre.jpeg" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Images\connexionfruits.jpeg" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Images\fandvBack.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Images\legumes.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Images\Paprika.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Resources\Images\icon.png" />
   </ItemGroup>
 </Project>

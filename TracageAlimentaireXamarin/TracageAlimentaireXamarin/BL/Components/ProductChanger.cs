@@ -27,22 +27,34 @@ namespace TracageAlimentaireXamarin.BL.Components
                     {
                         p.CurrentTreatment = nextTreatment;
                         p.States.Add(nextTreatment.OutgoingState);
+                        RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+                        Scan scan = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
+                        ras.Save(scan);
                     }
                     else
                     {
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                         p.States.Add(p.Process.Steps.ElementAt(0).Treatments.ElementAt(0).OutgoingState);
+                        RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+                        Scan scan = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
+                        ras.Save(scan);
                     }
                 }
             }
             catch (ArgumentOutOfRangeException oorex)
             {
+                RestAccessor<Scan> ras= new RestAccessor<Scan>(new Scan());
+                Scan scanar = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
+                ras.Save(scanar);
                 Treatment nextTreatment = FindNextTreatment(p);
+
                 if (nextTreatment != null)
                 {
                     p.States.Add(p.CurrentTreatment.OutgoingState);
                     p.CurrentTreatment = nextTreatment;
                     p.States.Add(nextTreatment.OutgoingState);
+                    Scan scan = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
+                    ras.Save(scan);
                 }
             }
 

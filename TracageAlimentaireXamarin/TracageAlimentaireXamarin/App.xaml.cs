@@ -1,8 +1,5 @@
-﻿using Java.Nio.Channels;
-using Tracage.Views;
+﻿using Tracage.Views;
 using Tracage.ViewModels;
-using TracageAlimentaireXamarin.ViewModels;
-using TracageAlimentaireXamarin.Views;
 using Xamarin.Forms;
 
 namespace TracageAlimentaireXamarin

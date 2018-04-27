@@ -7,6 +7,7 @@ using Tracage.ViewModels;
 using Tracage.Views;
 using TracageAlimentaireXamarin.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace TracageAlimentaireXamarin.Views
@@ -20,6 +21,8 @@ namespace TracageAlimentaireXamarin.Views
             vm.Navigation = Navigation;
             InitializeComponent();
         }
+
+
 
         protected override bool OnBackButtonPressed()
         {
@@ -39,5 +42,6 @@ namespace TracageAlimentaireXamarin.Views
                 return false;
             }
         }
+
     }
 }

@@ -31,6 +31,11 @@ namespace TracageAlimentaireXamarin.BL.Components
            return _client.GetItemAsync(identifier).Result;
         }
 
+        public IEnumerable<T> GetManyByIdentifier(object identifier)
+        {
+            return _client.GetItemsAsync(identifier).Result;
+        }
+
         public bool Update(T objectToUpdate, string identifier)
         {
             return _client.UpdateItemAsync(objectToUpdate, identifier);
@@ -45,5 +50,7 @@ namespace TracageAlimentaireXamarin.BL.Components
         {
             this.DataType = o;
         }
+
+
     }
 }

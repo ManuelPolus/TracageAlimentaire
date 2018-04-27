@@ -11,12 +11,13 @@
 
             <StackLayout>
                 <Label 
-                        Text="{Binding Path=ErrorMessage}"
+                        Text="{Binding Path=ErrorMessage, Mode=TwoWay}"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="FillAndExpand"
                         FontSize="Large"
-                        TextColor="Tomato"
-                    BackgroundColor="Aqua"/>
+                        Margin="10,0"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Tomato"/>
 
                 <Entry 
                         x:Name="mailEntry"
@@ -24,17 +25,19 @@
                         TextChanged="Entry_TextChanged"
                         Text="{Binding Path=Email}"
                         Keyboard="Email"
+                        Margin="10,0"
+                        HorizontalTextAlignment="Center"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"/>
 
-                <Entry
+                <!--<Entry
                         x:Name="passwordEntry"
                         Placeholder="password"
                         TextChanged="Entry_TextChanged"          
                         Text ="{Binding Path=Password}"
                         IsPassword="True"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"/>-->
 
                 <Button
                         x:Name="LoginButton"
@@ -42,7 +45,7 @@
                         Command="{Binding Path=LoginCommand}"
                         Margin="10,0"
                         TextColor="White"
-                        BackgroundColor="LightSkyBlue"
+                        BackgroundColor="#006622"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="CenterAndExpand"/>
 

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Android.Widget;
 using Tracage.DAL;
 using Tracage.Models;
+using TracageAlimentaireXamarin.BL.Components;
 using TracageAlmentaireWeb.Models;
 using Xamarin.Forms;
 
@@ -19,7 +21,8 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         private Product product;
-        private ObservableCollection<State> observableStates;
+        private Dictionary<DateTime,State> datesAndStates;
+        
 
         public Product Product
         {
@@ -38,18 +41,18 @@ namespace TracageAlimentaireXamarin.ViewModels
             }
         }
 
-        public ObservableCollection<State>  ObservableStates
+        public Dictionary<DateTime,State>  DatesAndStates
         {
-            get { return observableStates; }
+            get { return datesAndStates; }
             set
             {
-                if (observableStates != value)
+                if (datesAndStates != value)
                 {
-                    observableStates = value;
+                    datesAndStates = value;
 
                     if (this.PropertyChanged != null)
                     {
-                        PropertyChanged(this, new PropertyChangedEventArgs("ObservableStates"));
+                        PropertyChanged(this, new PropertyChangedEventArgs("DatesAndStates"));
                     }
                 }
             }
@@ -58,7 +61,16 @@ namespace TracageAlimentaireXamarin.ViewModels
         public ProductDetailViewModel(Product p)
         {
             this.Product = p;
-            this.ObservableStates = new ObservableCollection<State>(p.States);
+            List<State> states = p.States;
+            List<Scan> scans = new List<Scan>();
+            datesAndStates = new Dictionary<DateTime, State>();
+            RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+            scans = ras.GetManyByIdentifier(Product.Id).ToList();
+            foreach ( var state in states )
+            {
+                Scan matchingScan = scans.FirstOrDefault(s => s.OutgoingStateId == state.Id);
+                DatesAndStates.Add(matchingScan.DateOfScan, state);
+            }
         }
 
         

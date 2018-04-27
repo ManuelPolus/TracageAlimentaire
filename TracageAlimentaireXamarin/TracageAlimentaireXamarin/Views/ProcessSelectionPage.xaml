@@ -6,10 +6,11 @@
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
             <Label Text="this product isn't bound to any process, please choose one"
+                HorizontalTextAlignment="Center"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-            <ListView x:Name="ItemListView" ItemsSource="{Binding Path=Processes}" VerticalOptions="CenterAndExpand" SelectedItem="{Binding Path= SelectedProcess}" >
+            <ListView x:Name="ItemListView" ItemsSource="{Binding Path=Processes}" VerticalOptions="CenterAndExpand" SelectedItem="{Binding Path= SelectedProcess}" Margin="10"  BackgroundColor="White" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -23,6 +24,8 @@
 
             <Button Command="{Binding Path=ProcessValidationCommand}"
                     Text="VALIDATE PROCESS SELECTION"
+                    TextColor="White"
+                    BackgroundColor="#006622"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"/>
         </StackLayout>

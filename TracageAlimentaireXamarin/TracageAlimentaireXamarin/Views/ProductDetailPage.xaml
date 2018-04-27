@@ -3,37 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TracageAlimentaireXamarin.Views.ProductDetailPage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <RelativeLayout >
+            <Image 
+                Source="../Resources/Images/cadre.jpeg"
+                Aspect="AspectFill"
+                Opacity="0.2"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+            <Grid 
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label Text="product name :" />
-                <Label Text ="{Binding Path=Product.Name}"/>
-            </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="product :" />
+                        <Label Text ="{Binding Path=Product.Name}"/>
+                       
+                    </StackLayout>
+                    <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="5,10" Text="{Binding Path=Product.Description}"></Label>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label Text="process name :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                <Label Text ="{Binding Path=Product.Process.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <Label Text ="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            <Label Text="States of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <ListView x:Name="ItemListView" ItemsSource="{Binding Path=ObservableStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                   
-                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
-                                        <Label Text="{Binding Path=Status}" FontSize="18" VerticalOptions="CenterAndExpand" Margin="5,0"/>
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="process name :" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                        <Label Text ="{Binding Path=Product.Process.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                    </StackLayout>
+                    
 
+                    <Label Text ="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                    
 
-        </StackLayout>
+                    <Label Text="States of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        <ListView x:Name="ItemListView" InputTransparent="True" ItemsSource="{Binding Path=DatesAndStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" Margin="10" BackgroundColor="Transparent">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                                                <Label  Text="{Binding Key}" FontSize="14" VerticalOptions="StartAndExpand" Margin="5"/>
+                                                <Label  Text="{Binding Value.Status}" FontSize="14" VerticalOptions="CenterAndExpand" Margin="5"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </Grid>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

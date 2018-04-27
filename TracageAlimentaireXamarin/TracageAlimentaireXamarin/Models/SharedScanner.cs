@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TracageAlimentaireXamarin.Models;
 using ZXing;
 using ZXing.Common;
 
@@ -13,6 +14,9 @@ namespace Tracage.Models
             try
             {
                 var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+
+                scanner.BottomText = "You can now scan a product from the label :)";
+                
                 var result = await scanner.Scan();
                 return result.Text;
 

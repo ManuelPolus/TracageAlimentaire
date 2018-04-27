@@ -52,7 +52,7 @@ namespace Tracage.ViewModels
 
         public MainViewModel()
         {
-            this.message = "Welcome the the application ! ";
+            this.message = "Welcome to the application ! ";
             ScanCommand = new Command(ScanAsync);
         }
 
