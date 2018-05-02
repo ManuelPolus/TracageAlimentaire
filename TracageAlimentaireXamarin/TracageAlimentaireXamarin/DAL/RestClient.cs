@@ -15,7 +15,7 @@ namespace Tracage.DAL
     {
         //TODO: hasher le token avant 'envoi.   
         private readonly HttpClient _client;
-        private const string Resturl = "https://d58d1b54.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://92ad25c0.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
         private readonly string key = "$*aT9L5$fsgg(10fV2ljv[CmlB.U)z";
 
@@ -46,8 +46,6 @@ namespace Tracage.DAL
             var uri = new Uri(Resturl + _resource + "/" + identifier + "/");
             try
             {
-                //TODO gérer si le résultat est 404
-
                 var response = _client.GetAsync(uri).Result;
                 if (response.IsSuccessStatusCode)
                 {
@@ -56,24 +54,21 @@ namespace Tracage.DAL
                     return item;
                 }
 
-                if (response.StatusCode == HttpStatusCode.NotFound)
+                if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
                 {
+                    Console.WriteLine(response.RequestMessage);
                     return default(T);
                 }
 
-                if (response.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    return default(T);
-                }
             }
             catch (Exception e)
             {
-                Console.WriteLine("requets failed");
+                Console.WriteLine("request failed");
                 Console.WriteLine(e.StackTrace);
                 return default(T);
             }
 
-            throw new Exception("something went wrong but what ?");
+            throw new Exception("something went wrong");
 
         }
 

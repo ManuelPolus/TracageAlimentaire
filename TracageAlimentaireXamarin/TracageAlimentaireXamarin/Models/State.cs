@@ -8,5 +8,7 @@ namespace TracageAlmentaireWeb.Models
         public long Id { get; set; }
         public string Status { get; set; }
 
+        public bool Final { get; set; }
+
     }
 }

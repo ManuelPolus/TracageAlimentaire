@@ -51,6 +51,14 @@
 
                     </StackLayout>
 
+
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="White">
+                        <Label Text="current state of the product :" />
+                        <Label Text ="{Binding Path=Product.CurrentTreatment.OutgoingState.Status}"/>
+                    </StackLayout>
+
+
                 </StackLayout>
             </Grid>
         </RelativeLayout>

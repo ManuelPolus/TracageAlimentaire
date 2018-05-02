@@ -60,17 +60,27 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public ProductDetailViewModel(Product p)
         {
-            this.Product = p;
-            List<State> states = p.States;
-            List<Scan> scans = new List<Scan>();
-            datesAndStates = new Dictionary<DateTime, State>();
-            RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
-            scans = ras.GetManyByIdentifier(Product.Id).ToList();
-            foreach ( var state in states )
+            try
             {
-                Scan matchingScan = scans.FirstOrDefault(s => s.OutgoingStateId == state.Id);
-                DatesAndStates.Add(matchingScan.DateOfScan, state);
+                this.Product = p;
+                List<State> states = p.States;
+                List<Scan> scans = new List<Scan>();
+                datesAndStates = new Dictionary<DateTime, State>();
+                RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+                scans = ras.GetManyByIdentifier(Product.Id).ToList();
+                foreach (var state in states)
+                {
+                    Scan matchingScan = scans.FirstOrDefault(s => s.OutgoingStateId == state.Id);
+                    DatesAndStates.Add(matchingScan.DateOfScan, state);
+                }
+
+                DatesAndStates.Remove(DatesAndStates.ElementAt(DatesAndStates.Count - 1).Key);
             }
+            catch (Exception e)
+            {
+                //process with 1 step and 1 treatment ?
+            }
+            
         }
 
         

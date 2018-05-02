@@ -16,7 +16,7 @@ namespace TracageAlimentaireXamarin.BL.Components
         {
             try
             {
-                
+
                 if (p.States == null)
                     p.States = new List<State>();
 
@@ -25,6 +25,7 @@ namespace TracageAlimentaireXamarin.BL.Components
                     Treatment nextTreatment = FindNextTreatment(p);
                     if (nextTreatment != null)
                     {
+                        //classic intermediate product case
                         p.CurrentTreatment = nextTreatment;
                         p.States.Add(nextTreatment.OutgoingState);
                         RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
@@ -33,6 +34,7 @@ namespace TracageAlimentaireXamarin.BL.Components
                     }
                     else
                     {
+
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                         p.States.Add(p.Process.Steps.ElementAt(0).Treatments.ElementAt(0).OutgoingState);
                         RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
@@ -43,23 +45,22 @@ namespace TracageAlimentaireXamarin.BL.Components
             }
             catch (ArgumentOutOfRangeException oorex)
             {
-                RestAccessor<Scan> ras= new RestAccessor<Scan>(new Scan());
-                Scan scanar = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
-                ras.Save(scanar);
-                Treatment nextTreatment = FindNextTreatment(p);
-
-                if (nextTreatment != null)
+                try
                 {
-                    p.States.Add(p.CurrentTreatment.OutgoingState);
-                    p.CurrentTreatment = nextTreatment;
-                    p.States.Add(nextTreatment.OutgoingState);
-                    Scan scan = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
-                    ras.Save(scan);
+                    //Case new process
+                    p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
+                    p.States.Add(p.Process.Steps.ElementAt(0).Treatments.ElementAt(0).OutgoingState);
+                    RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+                    Scan scanar = new Scan(p.Id, p.CurrentTreatment.Id, p.CurrentTreatment.OutgoingState.Id);
+                    ras.Save(scanar);
                 }
+                catch (Exception e)
+                {
+                    //case process has only 1 step & 1 treatement 
+
+                }
+                
             }
-
-
-
         }
 
         public static Treatment FindNextTreatment(Product p)

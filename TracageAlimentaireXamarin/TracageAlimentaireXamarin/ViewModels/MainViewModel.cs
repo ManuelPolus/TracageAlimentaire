@@ -1,8 +1,10 @@
-﻿using Tracage.Models;
+﻿using System;
+using Tracage.Models;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.ComponentModel;
 using System.Linq;
+using Plugin.Vibrate;
 using TracageAlimentaireXamarin.BL.Components;
 using TracageAlimentaireXamarin.ViewModels;
 using TracageAlimentaireXamarin.Views;
@@ -72,9 +74,10 @@ namespace Tracage.ViewModels
             if (resultScan != null)
             {
                 Product pdt = FindProduct(resultScan);
+                
                 if (pdt != null)
                 {
-
+                    
                     if (pdt.IsFinal())
                         await Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(pdt)));
                     else

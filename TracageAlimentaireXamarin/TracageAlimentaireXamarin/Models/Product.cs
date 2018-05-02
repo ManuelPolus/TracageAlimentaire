@@ -44,7 +44,7 @@ namespace Tracage.Models
         {
             try
             {
-                return this.CurrentTreatment.OutgoingState.Status == "final";
+                return this.CurrentTreatment.OutgoingState.Final;
             }
             catch (NullReferenceException nullex)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Plugin.Vibrate;
 using TracageAlimentaireXamarin.Models;
 using ZXing;
 using ZXing.Common;
@@ -18,8 +19,10 @@ namespace Tracage.Models
                 scanner.BottomText = "You can now scan a product from the label :)";
                 
                 var result = await scanner.Scan();
+                var v = CrossVibrate.Current;
+                v.Vibration(TimeSpan.FromMilliseconds(100));
                 return result.Text;
-
+               
             }
             catch (Exception e)
             {
