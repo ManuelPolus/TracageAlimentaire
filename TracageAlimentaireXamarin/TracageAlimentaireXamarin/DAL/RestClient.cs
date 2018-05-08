@@ -15,7 +15,7 @@ namespace Tracage.DAL
     {
         //TODO: hasher le token avant 'envoi.   
         private readonly HttpClient _client;
-        private const string Resturl = "https://92ad25c0.ngrok.io/api"; //TODO replace with real 
+        private const string Resturl = "https://a68ea9c7.ngrok.io/api"; //TODO replace with real 
         private readonly string _resource;
         private readonly string key = "$*aT9L5$fsgg(10fV2ljv[CmlB.U)z";
 
@@ -38,6 +38,7 @@ namespace Tracage.DAL
                 var content = await response.Content.ReadAsStringAsync();
                 items = JsonConvert.DeserializeObject<List<T>>(content);
             }
+
             return items;
         }
 
@@ -54,12 +55,15 @@ namespace Tracage.DAL
                     return item;
                 }
 
-                if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
+                if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    Console.WriteLine(response.RequestMessage);
+                    System.Diagnostics.Debug.WriteLine(response.StatusCode + response.ReasonPhrase + "\n->" + response.Content);
                     return default(T);
                 }
-
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new UnauthorizedAccessException("you are not allowed to access the resource");
+                }
             }
             catch (Exception e)
             {
@@ -90,6 +94,7 @@ namespace Tracage.DAL
                     Debug.WriteLine(@"item successfully saved.");
                     return true;
                 }
+
                 if (response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     return false;
@@ -152,6 +157,7 @@ namespace Tracage.DAL
                     Debug.WriteLine(@"item successfully deleted.");
                     return true;
                 }
+
                 return false;
             }
             catch (Exception e)
@@ -200,6 +206,23 @@ namespace Tracage.DAL
         }
 
 
-    }
+        //pour les besoins du mémoire
+        public HttpResponseMessage GetByIdentifier(object identifier)
+        {
 
+            HttpClient httpClient = new HttpClient();
+            var uri = new Uri(Resturl + _resource + "/" + identifier + "/");
+
+            var response = httpClient.GetAsync(uri).Result;
+
+            if (response.IsSuccessStatusCode)
+            { 
+                return response;
+            }
+
+            return new HttpResponseMessage(response.StatusCode);
+
+        }
+
+    }
 }

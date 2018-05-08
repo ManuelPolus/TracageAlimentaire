@@ -1,5 +1,6 @@
 ﻿using Tracage.ViewModels;
 using System;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 
 namespace Tracage.Views
@@ -18,6 +19,8 @@ namespace Tracage.Views
             InitializeComponent();
         }
 
+        
+
         protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () =>
@@ -30,5 +33,12 @@ namespace Tracage.Views
 
         }
 
+        private void ScannerButton_OnClicked(object sender, EventArgs e)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                DisplayAlert("You are not connected", "You should be connected to the internet to proceed","GOT IT !");
+            }
+        }
     }
 }

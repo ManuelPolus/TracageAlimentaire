@@ -1,5 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Tracage.DAL;
+using Tracage.Models;
+using Xamarin.Android.Net;
 
 namespace TracageAlimentaireXamarin.BL.Components
 {
@@ -49,6 +56,33 @@ namespace TracageAlimentaireXamarin.BL.Components
         public void DefineType(object o)
         {
             this.DataType = o;
+        }
+
+        //pour les besoins du mémoire 
+        public T GetById(object identifier)
+        {
+
+            HttpResponseMessage message = _client.GetByIdentifier(identifier);
+
+            if (message.StatusCode == HttpStatusCode.NotFound)
+            {
+                return null;
+            }
+
+            if (message.StatusCode == HttpStatusCode.Forbidden)
+            {
+                throw new UnauthorizedAccessException("you shall not pass");
+            }
+
+            if (message.IsSuccessStatusCode)
+            {
+                var content = message.Content.ReadAsStringAsync().Result;
+                T item = JsonConvert.DeserializeObject<T>(content);
+                return item;
+            }
+
+            throw new Exception("Something else went wrong");
+            
         }
 
 

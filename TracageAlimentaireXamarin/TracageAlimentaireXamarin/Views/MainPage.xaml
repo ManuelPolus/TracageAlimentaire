@@ -5,17 +5,17 @@
              x:Class="Tracage.Views.MainPage"
              >
     <RelativeLayout>
-            <Image 
+        <Image 
                 Source="../Resources/Images/connexionfruits.jpeg"
                 Aspect="AspectFill"
                 Opacity="0.2"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
-            <Grid 
+        <Grid 
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
-                <StackLayout>
+            <StackLayout>
                 <Label
                    Text="{Binding Path=Message}" 
                    VerticalOptions="CenterAndExpand" 
@@ -40,8 +40,8 @@
                     Text="SCAN"
                     TextColor="White"
                     FontSize="18"
+                    Clicked="ScannerButton_OnClicked"
                     Command="{Binding Path=ScanCommand}"/>
-
             </StackLayout>
         </Grid>
     </RelativeLayout>

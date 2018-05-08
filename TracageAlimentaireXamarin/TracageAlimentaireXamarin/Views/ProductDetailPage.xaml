@@ -31,10 +31,10 @@
                     <Label Text ="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
                     
 
-                    <Label Text="States of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Previous states of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-                        <ListView x:Name="ItemListView" InputTransparent="True" ItemsSource="{Binding Path=DatesAndStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" Margin="10" BackgroundColor="Transparent">
+                        <ListView x:Name="ItemListView" ItemsSource="{Binding Path=DatesAndStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" Margin="10" BackgroundColor="Transparent">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

@@ -1,10 +1,9 @@
 ﻿using System;
 using Tracage.Models;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using System.ComponentModel;
-using System.Linq;
-using Plugin.Vibrate;
+using System.Windows.Forms;
+using Plugin.Connectivity;
 using TracageAlimentaireXamarin.BL.Components;
 using TracageAlimentaireXamarin.ViewModels;
 using TracageAlimentaireXamarin.Views;
@@ -62,35 +61,41 @@ namespace Tracage.ViewModels
         {
             this.message = message;
             ScanCommand = new Command(ScanAsync);
+
+
         }
 
 
         private async void ScanAsync()
         {
-            IsLoading = true;
-            SharedScanner scanner = new SharedScanner();
-            var resultScan = await scanner.ScanCodeAsync();
-            IsLoading = false;
-            if (resultScan != null)
-            {
-                Product pdt = FindProduct(resultScan);
-                
-                if (pdt != null)
-                {
-                    
-                    if (pdt.IsFinal())
-                        await Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(pdt)));
-                    else
-                        await Navigation.PushModalAsync(new ConnectionPage(new ConnectionViewModel(pdt)));
 
-                }
-                else
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                IsLoading = true;
+                SharedScanner scanner = new SharedScanner();
+                var resultScan = await scanner.ScanCodeAsync();
+                IsLoading = false;
+                if (resultScan != null)
                 {
-                    this.Message = "Oups this qr doesn't belong to the label :/ ...";
+                    Product pdt = FindProduct(resultScan);
+
+                    if (pdt != null)
+                    {
+
+                        if (pdt.IsFinal())
+                            await Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(pdt)));
+                        else
+                            await Navigation.PushModalAsync(new ConnectionPage(new ConnectionViewModel(pdt)));
+
+                    }
+                    else
+                    {
+                        this.Message = "Oups this qr doesn't belong to the label :/ ...";
+                    }
                 }
             }
-
         }
+
 
 
 

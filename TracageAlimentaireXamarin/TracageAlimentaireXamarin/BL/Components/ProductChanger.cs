@@ -34,7 +34,6 @@ namespace TracageAlimentaireXamarin.BL.Components
                     }
                     else
                     {
-
                         p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                         p.States.Add(p.Process.Steps.ElementAt(0).Treatments.ElementAt(0).OutgoingState);
                         RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
