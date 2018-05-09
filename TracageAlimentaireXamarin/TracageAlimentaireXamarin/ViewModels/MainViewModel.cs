@@ -96,9 +96,6 @@ namespace Tracage.ViewModels
             }
         }
 
-
-
-
         public Product FindProduct(string qrCode)
         {
             Product p = new Product();

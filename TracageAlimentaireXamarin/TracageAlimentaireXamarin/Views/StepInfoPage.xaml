@@ -5,9 +5,42 @@
              x:Class="TracageAlimentaireXamarin.Views.StepInfoPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15">
-            <Label Text="Welcome to Xamarin.Forms!"
+            
+
+            <Label Text ="{Binding Path=Treatment.Name}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Label Text ="___________"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text ="{Binding Path=Treatment.Description}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text ="___________"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+
+            <Label Text ="{Binding Path=Treatment.OutgoingState.Status}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text ="___________"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+
+            <Label Text ="{Binding Path=Step.Name}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text ="___________"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
         </StackLayout>
     </ContentPage.Content>
 </pages:PopupPage>

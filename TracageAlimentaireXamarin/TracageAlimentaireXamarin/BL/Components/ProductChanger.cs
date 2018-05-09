@@ -73,8 +73,8 @@ namespace TracageAlimentaireXamarin.BL.Components
                 {
                     if (p.CurrentTreatment == null)
                     {
-                        p.CurrentTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
-
+                        p.CurrentTreatment = new Treatment {Name = "no previous treatment", Description = " you are validating the first treatment of the process",Position = 0};
+                        nexTreatment = p.Process.Steps.ElementAt(0).Treatments.ElementAt(0);
                     }
                     if (nexTreatment == null)
                     {

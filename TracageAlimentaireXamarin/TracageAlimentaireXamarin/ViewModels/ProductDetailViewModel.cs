@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Android.Widget;
+using Javax.Security.Auth;
+using Rg.Plugins.Popup.Extensions;
 using Tracage.DAL;
 using Tracage.Models;
 using TracageAlimentaireXamarin.BL.Components;
+using TracageAlimentaireXamarin.Views;
 using TracageAlmentaireWeb.Models;
 using Xamarin.Forms;
 
@@ -21,7 +25,10 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         private Product product;
-        private Dictionary<DateTime,State> datesAndStates;
+        private KeyValuePair<DateTime,Treatment> selectedTreatment;
+        private Dictionary<DateTime,Treatment> datesAndStates;
+
+        public Command DetailsCommand { get; set; }
         
 
         public Product Product
@@ -41,7 +48,7 @@ namespace TracageAlimentaireXamarin.ViewModels
             }
         }
 
-        public Dictionary<DateTime,State>  DatesAndStates
+        public Dictionary<DateTime,Treatment>  DatesAndStates
         {
             get { return datesAndStates; }
             set
@@ -63,15 +70,24 @@ namespace TracageAlimentaireXamarin.ViewModels
             try
             {
                 this.Product = p;
-                List<State> states = p.States;
-                List<Scan> scans = new List<Scan>();
-                datesAndStates = new Dictionary<DateTime, State>();
-                RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
-                scans = ras.GetManyByIdentifier(Product.Id).ToList();
-                foreach (var state in states)
+
+
+                List<Treatment> treats = new List<Treatment>();
+                foreach (var step in p.Process.Steps)
                 {
-                    Scan matchingScan = scans.FirstOrDefault(s => s.OutgoingStateId == state.Id);
-                    DatesAndStates.Add(matchingScan.DateOfScan, state);
+                    treats.AddRange(step.Treatments);
+                }
+
+                datesAndStates = new Dictionary<DateTime, Treatment>();
+                RestAccessor<Scan> ras = new RestAccessor<Scan>(new Scan());
+
+                List<Scan> scans = new List<Scan>();
+                scans = ras.GetManyByIdentifier(p.Id).ToList();
+               
+                foreach (var t in treats)
+                {
+                    Scan match = scans.FirstOrDefault(s => s.OutgoingStateId == t.OutgoingState.Id);
+                    DatesAndStates.Add(match.DateOfScan, t);
                 }
 
                 DatesAndStates.Remove(DatesAndStates.ElementAt(DatesAndStates.Count - 1).Key);
@@ -81,6 +97,31 @@ namespace TracageAlimentaireXamarin.ViewModels
                 //process with 1 step and 1 treatment ?
             }
             
+        }
+
+        public KeyValuePair<DateTime,Treatment> SelectedTreatment
+        {
+            get { return selectedTreatment; }
+            set
+            {
+
+                    if (selectedTreatment.Value == null ||!selectedTreatment.Value.Equals(value))
+                    {
+                        selectedTreatment = value;
+
+                        if (selectedTreatment.Value != null && PropertyChanged != null)
+                        {
+                            PropertyChanged(this, new PropertyChangedEventArgs("SelectedTreatment"));
+                            GoToDetails();
+                        }
+                    }
+            }
+        }
+
+
+        public void GoToDetails()
+        {
+            Navigation.PushPopupAsync(new StepInfoPage(new StepInfoViewModel(SelectedTreatment)));
         }
 
         

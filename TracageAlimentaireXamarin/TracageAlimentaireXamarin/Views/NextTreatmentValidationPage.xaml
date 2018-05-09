@@ -29,7 +29,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="Current product state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="product state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         <Label Text="{Binding Path=P.CurrentTreatment.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
 
@@ -52,7 +52,7 @@
 
                     <Label Text="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
-                    <Button Text="VALIDATE TREATMENT" 
+                    <Button Text="VALIDATE TREATMENT PROGRESSION" 
                     Command="{Binding ValidateCommand}"
                     Margin="5,0"
                     TextColor="White"

@@ -34,14 +34,14 @@
                     <Label Text="Previous states of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-                        <ListView x:Name="ItemListView" ItemsSource="{Binding Path=DatesAndStates}" VerticalOptions="CenterAndExpand" SelectedItem="false" Margin="10" BackgroundColor="Transparent">
+                        <ListView x:Name="ItemListView" ItemsSource="{Binding Path=DatesAndStates}"  SelectedItem="{Binding Path=SelectedTreatment}"  VerticalOptions="CenterAndExpand" Margin="10" BackgroundColor="Transparent">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                             <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
                                                 <Label  Text="{Binding Key}" FontSize="14" VerticalOptions="StartAndExpand" Margin="5"/>
-                                                <Label  Text="{Binding Value.Status}" FontSize="14" VerticalOptions="CenterAndExpand" Margin="5"/>
+                                                <Label  Text="{Binding Value.Name}" FontSize="14" VerticalOptions="CenterAndExpand" Margin="5"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell>

@@ -58,32 +58,32 @@ namespace TracageAlimentaireXamarin.BL.Components
             this.DataType = o;
         }
 
-        //pour les besoins du mémoire 
-        public T GetById(object identifier)
-        {
+        ////pour les besoins du mémoire 
+        //public T GetById(object identifier)
+        //{
 
-            HttpResponseMessage message = _client.GetByIdentifier(identifier);
+        //    HttpResponseMessage message = _client.GetByIdentifier(identifier);
 
-            if (message.StatusCode == HttpStatusCode.NotFound)
-            {
-                return null;
-            }
+        //    if (message.StatusCode == HttpStatusCode.NotFound)
+        //    {
+        //        return null;
+        //    }
 
-            if (message.StatusCode == HttpStatusCode.Forbidden)
-            {
-                throw new UnauthorizedAccessException("you shall not pass");
-            }
+        //    if (message.StatusCode == HttpStatusCode.Forbidden)
+        //    {
+        //        throw new UnauthorizedAccessException("you shall not pass");
+        //    }
 
-            if (message.IsSuccessStatusCode)
-            {
-                var content = message.Content.ReadAsStringAsync().Result;
-                T item = JsonConvert.DeserializeObject<T>(content);
-                return item;
-            }
+        //    if (message.IsSuccessStatusCode)
+        //    {
+        //        var content = message.Content.ReadAsStringAsync().Result;
+        //        T item = JsonConvert.DeserializeObject<T>(content);
+        //        return item;
+        //    }
 
-            throw new Exception("Something else went wrong");
+        //    throw new Exception("Something else went wrong");
             
-        }
+        //}
 
 
     }
