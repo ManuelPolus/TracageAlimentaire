@@ -4,43 +4,56 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="TracageAlimentaireXamarin.Views.StepInfoPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15">
-            
 
-            <Label Text ="{Binding Path=Treatment.Name}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f" Margin="15">
 
-            <Label Text ="___________"
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="Nom du traitement :" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                <Label Text ="{Binding Path=Treatment.Name}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="___________"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
 
-            <Label Text ="{Binding Path=Treatment.Description}"
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="Description :" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                <Label Text ="{Binding Path=Treatment.Description}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="___________"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
 
-            <Label Text ="___________"
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="Etat :" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                <Label Text ="{Binding Path=Treatment.OutgoingState.Status}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="___________"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
 
-
-            <Label Text ="{Binding Path=Treatment.OutgoingState.Status}"
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                <Label Text ="Nom de l'étape :" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                <Label Text ="{Binding Path=Step.Name}"
                    VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-
-            <Label Text ="___________"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-
-
-            <Label Text ="{Binding Path=Step.Name}"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-
-            <Label Text ="___________"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </pages:PopupPage>

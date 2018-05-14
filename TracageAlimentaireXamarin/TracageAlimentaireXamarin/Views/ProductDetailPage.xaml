@@ -34,7 +34,7 @@
                     <Label Text="Previous states of the product :" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-                        <ListView x:Name="ItemListView" ItemsSource="{Binding Path=DatesAndStates}"  SelectedItem="{Binding Path=SelectedTreatment}"  VerticalOptions="CenterAndExpand" Margin="10" BackgroundColor="Transparent">
+                        <ListView x:Name="ItemListView" ItemsSource="{Binding Path=DatesAndStates}" SelectedItem="{Binding Path=SelectedTreatment, Mode=TwoWay}"  VerticalOptions="CenterAndExpand" Margin="10" BackgroundColor="Transparent">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
