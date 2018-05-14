@@ -7,7 +7,8 @@
     <RelativeLayout>
         <Grid 
         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+            BackgroundColor="#dfbf9f">
 
             <StackLayout>
                 <Label 
@@ -28,16 +29,9 @@
                         Margin="10,0"
                         HorizontalTextAlignment="Center"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        BackgroundColor="#dfbf9f"/>
 
-                <!--<Entry
-                        x:Name="passwordEntry"
-                        Placeholder="password"
-                        TextChanged="Entry_TextChanged"          
-                        Text ="{Binding Path=Password}"
-                        IsPassword="True"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="Center"/>-->
 
                 <Button
                         x:Name="LoginButton"

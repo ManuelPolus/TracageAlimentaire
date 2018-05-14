@@ -5,56 +5,52 @@
     <ContentPage.Content>
         <RelativeLayout>
 
-            <Image 
-                Source="../Resources/Images/legumes.jpg"
-                Aspect="AspectFill"
-                Opacity="0.2"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
-
             <Grid 
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                BackgroundColor="#dfbf9f">
+               
 
-                <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                        <Label Text="treatment : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=P.CurrentTreatment.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text="treatment : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  TextColor="Black" FontSize="16"/>
+                        <Label Text="{Binding Path=P.CurrentTreatment.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=P.CurrentTreatment.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                        <Label Text="{Binding Path=P.CurrentTreatment.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="product state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=P.CurrentTreatment.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text="product state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                        <Label Text="{Binding Path=P.CurrentTreatment.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="16"  HorizontalTextAlignment="Center"/>
+
                     </StackLayout>
 
-                    <Label Text="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <BoxView Color="Black" HeightRequest="1"/>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text=" upcoming treatment to validate: " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=TreatmentToValidate.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text=" upcoming treatment to validate: " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                        <Label Text="{Binding Path=TreatmentToValidate.Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" HorizontalTextAlignment="Center"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=TreatmentToValidate.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text="description : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                        <Label Text="{Binding Path=TreatmentToValidate.Description}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="outgoing state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Path=TreatmentToValidate.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#dfbf9f">
+                        <Label Text="outgoing state : " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16" />
+                        <Label Text="{Binding Path=TreatmentToValidate.OutgoingState.Status}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White"  HorizontalTextAlignment="Center"/>
                     </StackLayout>
 
-                    <Label Text="_______________" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
                     <Button Text="VALIDATE TREATMENT PROGRESSION" 
                     Command="{Binding ValidateCommand}"
-                    Margin="5,0"
+                    Margin="10"
                     TextColor="White"
                     BackgroundColor="#006622"
                     HorizontalOptions="CenterAndExpand"
