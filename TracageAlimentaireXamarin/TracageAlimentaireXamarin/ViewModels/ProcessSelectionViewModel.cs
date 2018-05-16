@@ -20,6 +20,7 @@ namespace TracageAlimentaireXamarin.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Product product;
+        private User loginUser;
         private Process selectedProcess;
         private ObservableCollection<Process> processes;
         private int index;
@@ -33,10 +34,11 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         }
 
-        public ProcessSelectionViewModel(Product p)
+        public ProcessSelectionViewModel(Product p, User loginUser)
         {
             ProcessValidationCommand = new Command(ValidateProcessSelection);
             product = p;
+            this.loginUser = loginUser;
             RestAccessor<Process> rap = new RestAccessor<Process>(new Process());
             List<Process> pList = new List<Process>();
             pList = rap.GetAsList().ToList();
@@ -47,7 +49,7 @@ namespace TracageAlimentaireXamarin.ViewModels
         {
             get { return processes; }
 
-            private set
+            set
             {
                 if (processes != value)
                 {
@@ -99,7 +101,7 @@ namespace TracageAlimentaireXamarin.ViewModels
             product.ProcessId = product.Process.Id;
             RestAccessor<Product> rap = new RestAccessor<Product>(new Product());
             rap.Update(product, product.QRCode);
-            Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(product)));
+            Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(product, loginUser)));
         }
 
     }

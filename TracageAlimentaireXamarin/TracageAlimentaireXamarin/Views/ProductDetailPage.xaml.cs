@@ -32,7 +32,7 @@ namespace TracageAlimentaireXamarin.Views
                     {
                         var result = await this.DisplayAlert("Alert!", "you are going back to the main page", "Go back", "Stay");
                         if (result)
-                            App.Current.MainPage = new MainPage(new MainViewModel());
+                            Application.Current.MainPage = new MainPage(new MainViewModel());
                     }
                 );
                 return true;

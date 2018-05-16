@@ -9,15 +9,19 @@ namespace TracageAlimentaireXamarin.BL.Components
         {
             try
             {
-                //return Checker.Check(identifiedUser.Password,clear);
-                return true;
+                if (identifiedUser != null)
+                {
+                    return true;
+                }
+
+                return false;
             }
             catch (NullReferenceException nullex)
             {
                 Console.WriteLine("no passwurd");
                 return false;
             }
-           
+
         }
     }
 }

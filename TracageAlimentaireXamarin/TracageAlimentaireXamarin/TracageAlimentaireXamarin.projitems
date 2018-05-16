@@ -35,12 +35,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SubContractor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Treatment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserScanRights.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccessViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConnectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NextTreatmentValidationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProcessSelectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StepInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AccessDenied.xaml.cs">
+      <DependentUpon>AccessDenied.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml.cs">
       <DependentUpon>ConnectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -84,9 +90,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)BL\Entities\" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ConnectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -113,5 +116,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Resources\Images\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AccessDenied.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

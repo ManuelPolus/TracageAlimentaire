@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ using Tracage.Models;
 using Tracage.ViewModels;
 using Tracage.Views;
 using TracageAlimentaireXamarin.BL.Components;
+using TracageAlimentaireXamarin.Models;
 using TracageAlimentaireXamarin.Views;
 using TracageAlmentaireWeb.BL.Components;
 using Xamarin.Forms;
@@ -95,13 +97,15 @@ namespace TracageAlimentaireXamarin.ViewModels
             {
                 RestAccessor<User> ra = new RestAccessor<User>(new User());
                 User loginUser = ra.GetByIdentifier(email);
+                
+
                 if (PasswordChecker.CheckPassord(Password, loginUser))
                 {
                     if (scannedProduct.Process == null)
-                        await Navigation.PushModalAsync(new ProcessSelectionPage(new ProcessSelectionViewModel(scannedProduct)));
+                        await Navigation.PushModalAsync(new ProcessSelectionPage(new ProcessSelectionViewModel(scannedProduct, loginUser)));
 
                     else
-                        await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct)));
+                        await Navigation.PushModalAsync(new NextTreatmentValidationPage(new NextTreatmentValidationViewModel(scannedProduct,loginUser)));
 
                 }
                 else

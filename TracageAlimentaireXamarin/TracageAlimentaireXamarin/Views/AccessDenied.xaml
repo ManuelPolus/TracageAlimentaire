@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 x:Class="TracageAlimentaireXamarin.Views.AccessDenied">
+    <ContentPage.Content>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="1" BackgroundColor="White">
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="you don't have the right !" FontSize="24" TextColor="Tomato"/>
+        </StackLayout>
+
+
+
+
+</ContentPage.Content>
+</pages:PopupPage>
+

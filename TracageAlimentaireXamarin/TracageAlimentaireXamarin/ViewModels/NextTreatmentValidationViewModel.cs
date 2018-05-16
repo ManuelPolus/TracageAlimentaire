@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+using Rg.Plugins.Popup.Extensions;
 using Tracage.Models;
 using TracageAlimentaireXamarin.BL.Components;
-using TracageAlimentaireXamarin.Droid.Annotations;
+using TracageAlimentaireXamarin.Models;
 using TracageAlimentaireXamarin.Views;
 using TracageAlmentaireWeb.Models;
 using Xamarin.Forms;
@@ -24,7 +23,7 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public Command ValidateCommand { get; set; }
 
-        public NextTreatmentValidationViewModel(Product p)
+        public NextTreatmentValidationViewModel(Product p, User loginUser)
         {
             try
             {
@@ -32,7 +31,14 @@ namespace TracageAlimentaireXamarin.ViewModels
                 this.P = p;
 
                 this.treatmentToValidate = ProductChanger.FindNextTreatment(p);
-
+                RestAccessor<UserScanRights> raur = new RestAccessor<UserScanRights>(new UserScanRights());
+                List<UserScanRights> ulist = new List<UserScanRights>();
+                ulist = raur.GetManyByIdentifier(loginUser.CurrentRole_Id).ToList();
+                var match = ulist.Find(u => u.TreatmentId == treatmentToValidate.Id);
+                if  (match == null)
+                {
+                    Navigation.PushPopupAsync(new AccessDenied(new AccessViewModel()));
+                }
             }
             catch (Exception nullex)
             {

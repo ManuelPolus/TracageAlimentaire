@@ -53,9 +53,9 @@
 
 
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="White">
-                        <Label Text="current state of the product :" />
-                        <Label Text ="{Binding Path=Product.CurrentTreatment.OutgoingState.Status}"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="4">
+                        <Label Text="current state of the product" FontSize="16" TextColor="Black" FontFamily="Arial" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text ="{Binding Path=Product.CurrentTreatment.OutgoingState.Status}" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
 
 

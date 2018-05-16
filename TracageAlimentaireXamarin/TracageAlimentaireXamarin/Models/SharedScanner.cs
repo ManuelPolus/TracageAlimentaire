@@ -16,7 +16,7 @@ namespace Tracage.Models
             {
                 var scanner = new ZXing.Mobile.MobileBarcodeScanner();
 
-                scanner.BottomText = "You can now scan a product from the label :)";
+                scanner.BottomText = "You can now scan a product from the label";
                 
                 var result = await scanner.Scan();
                 var v = CrossVibrate.Current;
