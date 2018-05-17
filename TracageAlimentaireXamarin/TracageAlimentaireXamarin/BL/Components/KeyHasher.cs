@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Reflection;
-using System.Security.Authentication;
-using System.Security.Cryptography;
-using System.Security.Policy;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace TracageAlmentaireWeb.BL.Components

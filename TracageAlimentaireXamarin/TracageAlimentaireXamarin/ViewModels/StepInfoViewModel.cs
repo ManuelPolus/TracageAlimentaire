@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using Tracage.Models;
 using TracageAlimentaireXamarin.BL.Components;
-using TracageAlimentaireXamarin.Droid.Annotations;
-using TracageAlmentaireWeb.Models;
 using Xamarin.Forms;
 
 namespace TracageAlimentaireXamarin.ViewModels

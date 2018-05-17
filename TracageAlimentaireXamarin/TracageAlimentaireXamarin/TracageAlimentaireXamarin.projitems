@@ -22,7 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)BL\Components\KeyHasher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DAL\RestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Address.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CustomScanOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Organization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Process.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Product.cs" />

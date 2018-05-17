@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Plugin.Vibrate;
-using TracageAlimentaireXamarin.Models;
 using ZXing;
 using ZXing.Common;
 

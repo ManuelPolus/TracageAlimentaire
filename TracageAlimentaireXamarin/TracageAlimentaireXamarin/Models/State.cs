@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Tracage.Models;
-
-namespace TracageAlmentaireWeb.Models
+﻿namespace TracageAlmentaireWeb.Models
 {
     public class State
     {

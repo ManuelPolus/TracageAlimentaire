@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 using Tracage.DAL;
-using Tracage.Models;
-using Xamarin.Android.Net;
 
 namespace TracageAlimentaireXamarin.BL.Components
 {

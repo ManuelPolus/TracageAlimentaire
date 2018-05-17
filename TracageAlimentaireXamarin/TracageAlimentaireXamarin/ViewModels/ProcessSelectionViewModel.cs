@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO.MemoryMappedFiles;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
-using Tracage.DAL;
 using Tracage.Models;
 using TracageAlimentaireXamarin.BL.Components;
+using TracageAlimentaireXamarin.Models;
 using TracageAlimentaireXamarin.Views;
 using Xamarin.Forms;
 
@@ -24,6 +20,7 @@ namespace TracageAlimentaireXamarin.ViewModels
         private Process selectedProcess;
         private ObservableCollection<Process> processes;
         private int index;
+        private UserScanRights usr;
 
         public INavigation Navigation { get; set; }
 
@@ -43,6 +40,7 @@ namespace TracageAlimentaireXamarin.ViewModels
             List<Process> pList = new List<Process>();
             pList = rap.GetAsList().ToList();
             this.processes = new ObservableCollection<Process>(pList);
+            
         }
 
         public ObservableCollection<Process> Processes

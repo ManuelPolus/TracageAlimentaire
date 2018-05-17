@@ -17,6 +17,7 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         private Treatment treatmentToValidate;
         private State state;
+        private UserScanRights usr;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation { get; set; }
@@ -34,16 +35,17 @@ namespace TracageAlimentaireXamarin.ViewModels
                 RestAccessor<UserScanRights> raur = new RestAccessor<UserScanRights>(new UserScanRights());
                 List<UserScanRights> ulist = new List<UserScanRights>();
                 ulist = raur.GetManyByIdentifier(loginUser.CurrentRole_Id).ToList();
-                var match = ulist.Find(u => u.TreatmentId == treatmentToValidate.Id);
-                if  (match == null)
-                {
-                    Navigation.PushPopupAsync(new AccessDenied(new AccessViewModel()));
-                }
+                usr = ulist.Find(u => u.TreatmentId == treatmentToValidate.Id); 
             }
             catch (Exception nullex)
             {
              
             }
+        }
+
+        private void Deny()
+        {
+            this.Navigation.PushModalAsync(new AccessDenied(new AccessViewModel()));
         }
 
         public Product P { get; set; }
@@ -86,12 +88,19 @@ namespace TracageAlimentaireXamarin.ViewModels
 
         public void ValidateTreatment()
         {
+            if (usr == null)
+            {
+                Deny();
+            }
+            else
+            {
+                ProductChanger.ChangeProductreatment(P);
+                RestAccessor<Product> rap = new RestAccessor<Product>(P);
+                rap.Update(P, P.QRCode);
+
+                Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(P)));
+            }
             
-            ProductChanger.ChangeProductreatment(P);
-            RestAccessor<Product> rap = new RestAccessor<Product>(P);
-            rap.Update(P,P.QRCode);
-            
-            Navigation.PushModalAsync(new ProductDetailPage(new ProductDetailViewModel(P)));
         }
 
     }

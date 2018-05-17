@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO.MemoryMappedFiles;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android.Widget;
-using Javax.Security.Auth;
 using Rg.Plugins.Popup.Extensions;
-using Tracage.DAL;
 using Tracage.Models;
 using TracageAlimentaireXamarin.BL.Components;
 using TracageAlimentaireXamarin.Views;

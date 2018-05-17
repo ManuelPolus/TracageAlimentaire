@@ -1,8 +1,6 @@
-﻿using System;
-using Tracage.Models;
+﻿using Tracage.Models;
 using Xamarin.Forms;
 using System.ComponentModel;
-using System.Windows.Forms;
 using Plugin.Connectivity;
 using TracageAlimentaireXamarin.BL.Components;
 using TracageAlimentaireXamarin.ViewModels;

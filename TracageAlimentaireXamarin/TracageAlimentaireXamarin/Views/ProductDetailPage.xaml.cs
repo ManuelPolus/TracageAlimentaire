@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tracage.ViewModels;
 using Tracage.Views;
 using TracageAlimentaireXamarin.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace TracageAlimentaireXamarin.Views
